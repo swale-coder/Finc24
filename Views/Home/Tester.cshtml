@@ -1,0 +1,63 @@
+﻿@{
+    ViewBag.Title = "Tester";
+    Layout = "~/Views/Shared/_Layout_DashBoard.cshtml";
+}
+
+<h2>Tester</h2>
+
+
+<script type="text/javascript">
+    $(function () {
+        // Initialize numeric spinner input boxes
+        //$(".numeric-spinner").spinedit();
+        // Initialize modal dialog
+        // attach modal-container bootstrap attributes to links with .modal-link class.
+        // when a link is clicked with these attributes, bootstrap will display the href content in a modal dialog.
+        $('body').on('click', '#modal-link', function (e) {
+            e.preventDefault();
+            alert(1);
+            $(this).attr('data-target', '#modal-container');
+            $(this).attr('data-toggle', 'modal');
+        });
+        // Attach listener to .modal-close-btn's so that when the button is pressed the modal dialog disappears
+        //$('body').on('click', '.modal-close-btn', function () {
+        //    alert(4);
+        //    $('#modal-container').modal('hide');
+        //});
+        ////clear modal cache, so that new content can be loaded
+        //$('#modal-container').on('hidden.bs.modal', function () {
+        //    $(this).removeData('bs.modal');
+        //});
+        //$('#CancelModal').on('click', function () {
+        //    //  return false;
+        //    alert(2);
+        //    window.location.reload();
+        //});
+    });
+</script>
+<link href="~/Content/Styles/animate.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/Content/Styles/bootstrap.min.css">
+<link rel="stylesheet" href="~/Content/Styles/owl.theme.css">
+<link rel="stylesheet" href="~/Content/Styles/owl.carousel.css">
+<link rel="stylesheet" href="~/Content/Styles/jquery.vegas.min.css">
+<link rel="stylesheet" href="~/Content/Styles/animate.min.css">
+<link rel="stylesheet" href="~/Content/Styles/styles.css">
+<link rel="stylesheet" href="~/Content/Styles/pixeden-icons.css">
+<!-- CUSTOM STYLES -->
+<link rel="stylesheet" href="~/Content/Styles/styles(1).css">
+<link rel="stylesheet" href="~/Content/Styles/responsive.css">
+<!-- WEBFONT -->
+<link href="~/Content/Styles/css" rel="stylesheet" type="text/css">
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/modernizr-2.6.2.js"></script>
+<link href="~/ImageAnimation/bootstrap.css" rel="stylesheet" />
+<link href="~/ImageAnimation/Site.css" rel="stylesheet" />
+<script src="~/ImageAnimation/js-image-slider.js"></script>
+<link href="~/ImageAnimation/js-image-slider.css" rel="stylesheet" />
+
+@Html.ActionLink("Lyubomir", "ViewLyubomir", "Home", new { type = "accommodation", id = 1, imgCount = 4 }, new { @class = "modal-link btn btn-success" })
+<div id="modal-container" class="modal fade"
+     tabindex="-1" role="dialog">
+    <div class="modal-content">
+    </div>
+</div>

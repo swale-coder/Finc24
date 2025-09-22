@@ -1,0 +1,78 @@
+﻿
+@{
+    ViewBag.Title = "Market";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Market</h2>
+
+@using (Html.BeginForm("Market", "Admin", FormMethod.Post, new { enctype = "multipart/form-data", style = "background: white;box-shadow: 1px 2px 13px 0 rgba(29,29,29,.12);" }))
+{
+    <div class="col-md-12" style="margin-top:35px">
+        <div class="col-md-12">
+            <span class="input-group-addon" style="border-radius: 40px;background: #39d3b7;color: white; font-weight: bold">Market Information</span>
+        </div><br>
+        <br>
+        <div class="col-md-12">
+            <span class="col-md-2" style="padding-top: 5px;font-weight: bold;">Name </span>@*<span class="glyphicon glyphicon-user"></span>*@
+            <div class="col-md-8">
+                <input id="name" name="Name" type="text" class="form-control" placeholder="Enter Market Name">
+            </div>
+            @*<div class="col-md-2">*@<span style="color: Red; font-size: 20px;float:left;font-weight:bold">*</span>@*</div>*@
+        </div>
+
+        <div class="col-md-12">
+            <span class="col-md-2" style="padding-top: 5px;font-weight: bold;">Type </span>@*<span class="glyphicon glyphicon-user"></span>*@
+            <div class="col-md-8">
+                <input id="name" name="Type" type="text" class="form-control" placeholder="Enter market type">
+            </div>
+            @*<div class="col-md-2">*@<span style="color: Red; font-size: 20px;float:left;font-weight:bold">*</span>@*</div>*@
+        </div>
+        <div class="col-md-12">
+            <span class="col-md-2" style="padding-top: 5px;font-weight: bold;">Bargain </span>@*<span class="glyphicon glyphicon-user"></span>*@
+            <div class="col-md-8">
+                <input id="name" name="Bargain" type="text" class="form-control" placeholder="Enter whether bargaining is possible">
+            </div>
+            @*<div class="col-md-2">*@<span style="color: Red; font-size: 20px;float:left;font-weight:bold">*</span>@*</div>*@
+        </div>
+        <div class="col-md-12">
+            <span class="col-md-2" style="padding-top: 5px;font-weight: bold;">Address </span>@*<span class="glyphicon glyphicon-user"></span>*@
+            <div class="col-md-8">
+                <input id="name" name="Address" type="text" class="form-control" placeholder="Enter market address">
+            </div>
+            @*<div class="col-md-2">*@<span style="color: Red; font-size: 20px;float:left;font-weight:bold">*</span>@*</div>*@
+        </div>
+        <div class="col-md-12">
+            <span class="col-md-2" style="padding-top: 5px;font-weight: bold;">Speciality </span>@*<span class="glyphicon glyphicon-user"></span>*@
+            <div class="col-md-8">
+                <input id="name" name="Speciality" type="text" class="form-control" placeholder="Enter market speciality">
+            </div>
+            @*<div class="col-md-2">*@<span style="color: Red; font-size: 20px;float:left;font-weight:bold">*</span>@*</div>*@
+        </div>
+        <div class="col-md-12">
+            <span class="col-md-2" style="padding-top: 5px;font-weight: bold;">Location </span>@*<span class="glyphicon glyphicon-user"></span>*@
+            <div class="col-md-8">
+                <input id="name" name="Location" type="text" class="form-control" placeholder="Enter market Location">
+            </div>
+            @*<div class="col-md-2">*@<span style="color: Red; font-size: 20px;float:left;font-weight:bold">*</span>@*</div>*@
+        </div>
+        <div class="col-md-12">
+            <label class="col-md-4" for="file">Upload Image:</label>
+            <input type="file" class="col-md-8" multiple="multiple" name="file" id="file" style="width: 100%;" />
+
+        </div>
+        <br />
+        <br /><br />
+
+        <div class="col-md-12">
+            <div class="col-md-4"></div>
+            <div class="col-md-4" style="margin-top: 8px;">
+                <input type="submit" class="btn btn-success" value="Add to Database" />
+                <input type="submit" class="btn btn-danger" value="Cancel" />
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+
+    </div>
+
+}

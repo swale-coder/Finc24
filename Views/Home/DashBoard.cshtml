@@ -1,0 +1,893 @@
+﻿@{
+    ViewBag.Title = "DashBoard";
+    Layout = "~/Views/Shared/_Layout_DashBoard.cshtml";
+}
+<link href="~/Content/Styles/styles_dashboard.min.css" rel="stylesheet" />
+<link href="~/Content/Payment/font-awesome.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<link href="~/ImageAnimation/js-image-slider.css" rel="stylesheet" />
+
+<div class="modal fade" id="myModalPopUp" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+
+            <div class="modal-body">
+                <p>
+                    Congratulations @Session["userlogin"]!! Your payment is successful.
+                </p>
+                <p>
+                    Welcome to your dashboard. We will get in touch with you shortly.
+                </p>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" id="closemyModalPopUp" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+@*<input type="hidden" value="" id="tid" />*@
+<div id="page-content" style="margin-top: 93px;">
+    <div class="rules2 cf2 hidden-sm">
+    </div>
+    <div class="f-page" role="main">
+        @*
+            <style>
+                .z-tabs.vertical > .z-container > .z-content.z-padding > .z-content-inner,
+                .z-tabs.horizontal > .z-container > .z-content.z-padding > .z-content-inner {
+                    padding: 20px 15px 0 15px;
+                }
+            </style>*@
+
+        <section class="f-section f-gray f-border-top  f-bottom-60" id="section-ajax">
+            <div class="f-content container">
+                <div class="row">
+                    <div class="col-md-12">
+                        @if (ViewBag.IsPaid == true)
+                        {
+
+                            @*<div id="demo-nested" class="tabbed-nav z-tabs-loading " data-options='{"deeplinking": false, "multiline":true,"manualTabId": false, "defaultTab": "tab1", "theme": "white","orientation": "horizontal", "position": "top-compact", "size": "medium", "delayAjax":350}'>
+                            *@
+                            <div id="demo-nested" class="tabbed-nav z-tabs-loading " data-options='{"deeplinking": false, "multiline":true,"manualTabId": false, "defaultTab": "@ViewBag.CurrentTab", "theme": "white","orientation": "horizontal", "position": "top-compact", "size": "medium", "delayAjax":350}'>
+                                <ul id="dashTabs">
+                                    <li id="accommodation"><a>Accommodation</a></li>
+                                    <li id="restaurant"><a>Restaurants</a></li>
+                                    <li id="market"><a>Market</a></li>
+                                    <li id="cook"><a>Cook</a></li>
+                                    <li id="lpg"><a>LPG</a></li>
+                                    <li id="internet/Mobile"><a>Internet/Mobile</a></li>
+                                    <li id="other"><a>Other Services</a></li>
+                                </ul>
+                                <span class="z-spinner"></span>
+
+                                <div>
+
+                                    <!-- Content for the first tab-->
+                                    <div class="z-row z-padding" id="Accomodation">
+                                        @if (ViewBag.AccomodationDetails != null)
+                                        {
+                                            foreach (var accommodation in ViewBag.AccomodationDetails)
+                                            {
+
+                                                <div class="mainRow">
+                                                    <div id="dataRow" class="clearfix -relative" style="position: relative">
+                                                        <div id="imgCol" class="col-md-3 no-padding-sm no-padding-md">
+                                                            <a target="_blank" class="srp-item__image_link js__srp-item__image__link js__srp-listing" data-section="Photo" style=" display: inline-block; z-index: 2;" href="/bangalore/eternity-serene-kodichikkanahalli/" title="">
+                                                                <img src="https://images3.roofandfloor.com/listing_49e66cf8ad89150889c236a0ee0bb38f/480x320/eternity-serene-in-bommanahalli-elevation-photo-nxg.jpg" style="width: 100%;min-height: 175px">
+                                                            </a>
+
+                                                            <a class="more" data-toggle="modal" data-target="#myModal">+ More</a>
+
+                                                            <input type="hidden" value="@accommodation.acco_id" class="anim_Id" />
+                                                            <input type="hidden" value="@accommodation.acco_imgcount" class="anim_imgcount" />
+                                                            <input type="hidden" value="accommodation" class="anim_type" />
+
+                                                        </div>
+
+
+                                                        <div id="descriptionCol" class="col-md-9 srp-item__bottom-block" style="position: relative;">
+                                                            <div class="descriptionInnner">
+                                                                <div id="mainDescription" class="col-md-7 srp-item__content hidden-xs hidden-sm">
+                                                                    <p class="rowTitle">
+                                                                        @accommodation.acco_name
+                                                                    </p>
+                                                                    <div id="rent" class="priceRange" style="">
+                                                                        Rent: 	<span style="color:#DB1212">@accommodation.acco_rent</span>
+                                                                    </div>
+                                                                    <br>
+                                                                    <div id="description" class="description" style="">
+                                                                        <span class="hidden-sm hidden-xs">
+                                                                            Description: <span style="color:#DB1212">@accommodation.acco_desc</span>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                                <div id="contact" class="col-md-5 -minheight0">
+                                                                    <div id="phone" class="srp-item__price clearfix hidden-sm hidden-xs">
+                                                                        <span>
+                                                                            <span style="font-size: 12px;">Phone: </span>
+                                                                            <span style="color:#DB1212;font-size: 12px;"> @accommodation.acco_phone  </span>
+                                                                        </span>
+                                                                        <br><br>
+                                                                    </div>
+
+                                                                    <div id="address" class="srp-item__price clearfix hidden-sm hidden-xs">
+                                                                        <span>
+                                                                            <span class="srp-item__price-head" style="font-size: 12px;">Address: </span>
+                                                                            <span style="color:#DB1212;font-size: 12px;">
+                                                                                @accommodation.acco_address
+                                                                            </span>
+
+                                                                        </span>
+                                                                        <br><br>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            }
+                                        }
+                                    </div>
+
+                                    <div class="z-row z-padding" id="Restaurant">
+                                        @if (ViewBag.RestDetails != null)
+                                        {
+                                            foreach (var restaurant in ViewBag.RestDetails)
+                                            {
+                                                <div class="mainRow">
+                                                    <div id="dataRow" class="clearfix -relative" style="position: relative">
+                                                        <div id="imgCol" class="col-md-3 no-padding-sm no-padding-md">
+                                                            <a target="_blank" class="srp-item__image_link js__srp-item__image__link js__srp-listing" data-section="Photo" style=" display: inline-block; z-index: 2;" href="/bangalore/eternity-serene-kodichikkanahalli/" title="">
+                                                                <img src="https://images3.roofandfloor.com/listing_49e66cf8ad89150889c236a0ee0bb38f/480x320/eternity-serene-in-bommanahalli-elevation-photo-nxg.jpg" style="width: 100%;min-height: 175px">
+                                                            </a>
+                                                            <a class="more" data-toggle="modal" data-target="#myModal">+ More</a>
+
+                                                            <input type="hidden" value="@restaurant.rest_id" class="anim_Id" />
+                                                            <input type="hidden" value="@restaurant.rest_imgcount" class="anim_imgcount" />
+                                                            <input type="hidden" value="restaurant" class="anim_type" />
+                                                        </div>
+                                                        <div id="descriptionCol" class="col-md-9 srp-item__bottom-block" style="position: relative;">
+                                                            <div class="descriptionInnner">
+                                                                <div id="mainDescription" class="col-md-7 srp-item__content hidden-xs hidden-sm">
+                                                                    <p class="rowTitle">
+                                                                        @restaurant.rest_name
+                                                                    </p>
+                                                                    <div id="rent" class="priceRange" style="">
+                                                                        Budget (single person): 	<span style="color:#DB1212">@restaurant.rest_budget</span>
+                                                                    </div>
+                                                                    <br>
+                                                                    <div id="description" class="description" style="">
+                                                                        <span class="hidden-sm hidden-xs">
+                                                                            Cuisine: <span style="color:#DB1212">@restaurant.rest_speciality</span>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                                <div id="contact" class="col-md-5 -minheight0">
+                                                                    <div id="phone" class="srp-item__price clearfix hidden-sm hidden-xs">
+                                                                        <span>
+                                                                            <span style="font-size: 12px;">Phone: </span>
+                                                                            <span style="color:#DB1212;font-size: 12px;"> @restaurant.rest_phone  </span>
+                                                                        </span>
+                                                                        <br><br>
+                                                                    </div>
+
+                                                                    <div id="address" class="srp-item__price clearfix hidden-sm hidden-xs">
+                                                                        <span>
+                                                                            <span class="srp-item__price-head" style="font-size: 12px;">Address: </span>
+                                                                            <span style="color:#DB1212;font-size: 12px;">
+                                                                                @restaurant.rest_address
+                                                                            </span>
+
+                                                                        </span>
+                                                                        <br><br>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+                                            }
+                                        }
+                                    </div>
+
+                                    <div class="z-row z-padding" id="Market">
+                                        @if (ViewBag.Market != null)
+                                        {
+                                            foreach (var market in ViewBag.market)
+                                            {
+                                                <div class="mainRow">
+                                                    <div id="dataRow" class="clearfix -relative" style="position: relative">
+                                                        <div id="imgCol" class="col-md-3 no-padding-sm no-padding-md">
+                                                            <a target="_blank" class="srp-item__image_link js__srp-item__image__link js__srp-listing" data-section="Photo" style=" display: inline-block; z-index: 2;" href="/bangalore/eternity-serene-kodichikkanahalli/" title="">
+                                                                <img src="https://images3.roofandfloor.com/listing_49e66cf8ad89150889c236a0ee0bb38f/480x320/eternity-serene-in-bommanahalli-elevation-photo-nxg.jpg" style="width: 100%;min-height: 175px">
+                                                            </a>
+                                                            <a class="more" data-toggle="modal" data-target="#myModal">+ More</a>
+
+                                                            <input type="hidden" value="@market.market_id" class="anim_Id" />
+                                                            <input type="hidden" value="@market.market_imgcount" class="anim_imgcount" />
+                                                            <input type="hidden" value="market" class="anim_type" />
+
+                                                        </div>
+                                                        <div id="descriptionCol" class="col-md-9 srp-item__bottom-block" style="position: relative;">
+                                                            <div class="descriptionInnner">
+                                                                <div id="mainDescription" class="col-md-7 srp-item__content hidden-xs hidden-sm">
+                                                                    <p class="rowTitle">
+                                                                        @market.market_name
+                                                                    </p>
+                                                                    <div id="rent" class="priceRange" style="">
+                                                                        Type:	<span style="color:#DB1212">@market.market_type</span>
+                                                                    </div>
+                                                                    <br>
+                                                                    <div id="description" class="description" style="">
+                                                                        <span class="hidden-sm hidden-xs">
+                                                                            Items: <span style="color:#DB1212">@market.market_speciality</span>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                                <div id="contact" class="col-md-5 -minheight0">
+                                                                    <div id="bargain" class="srp-item__price clearfix hidden-sm hidden-xs">
+                                                                        <span>
+                                                                            <span style="font-size: 12px;">Bargain allowed: </span>
+                                                                            <span style="color:#DB1212;font-size: 12px;"> @market.market_bargain  </span>
+                                                                        </span>
+                                                                        <br><br>
+                                                                    </div>
+
+                                                                    <div id="address" class="srp-item__price clearfix hidden-sm hidden-xs">
+                                                                        <span>
+                                                                            <span class="srp-item__price-head" style="font-size: 12px;">Address: </span>
+                                                                            <span style="color:#DB1212;font-size: 12px;">
+                                                                                @market.market_address
+                                                                            </span>
+
+                                                                        </span>
+                                                                        <br><br>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+                                            }
+                                        }
+                                    </div>
+
+                                    <div class="z-row z-padding" id="Cook">
+                                        @if (ViewBag.CookDetails != null)
+                                        {
+                                            foreach (var cook in ViewBag.CookDetails)
+                                            {
+                                                <div class="mainRow">
+                                                    <div id="dataRow" class="clearfix -relative" style="position: relative">
+                                                        <div id="imgCol" class="col-md-3 no-padding-sm no-padding-md">
+                                                            <a target="_blank" class="srp-item__image_link js__srp-item__image__link js__srp-listing" data-section="Photo" style=" display: inline-block; z-index: 2;" href="/bangalore/eternity-serene-kodichikkanahalli/" title="">
+                                                                <img src="https://images3.roofandfloor.com/listing_49e66cf8ad89150889c236a0ee0bb38f/480x320/eternity-serene-in-bommanahalli-elevation-photo-nxg.jpg" style="width: 100%;min-height: 175px">
+                                                            </a>
+                                                            <a class="more" data-toggle="modal" data-target="#myModal">+ More</a>
+
+                                                            <input type="hidden" value="@cook.cook_id" class="anim_Id" />
+                                                            <input type="hidden" value="@cook.cook_imgcount" class="anim_imgcount" />
+                                                            <input type="hidden" value="cook" class="anim_type" />
+
+                                                        </div>
+                                                        <div id="descriptionCol" class="col-md-9 srp-item__bottom-block" style="position: relative;">
+                                                            <div class="descriptionInnner">
+                                                                <div id="mainDescription" class="col-md-7 srp-item__content hidden-xs hidden-sm">
+                                                                    <p class="rowTitle">
+                                                                        @cook.cook_name
+                                                                    </p>
+                                                                    <div id="rent" class="priceRange" style="">
+                                                                        Charge (2 persons): 	<span style="color:#DB1212">@cook.cook_price</span>
+                                                                    </div>
+                                                                    <br>
+                                                                    <div id="description" class="description" style="">
+                                                                        <span class="hidden-sm hidden-xs">
+                                                                            Speciality: <span style="color:#DB1212"> @cook.cook_speciality</span>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                                <div id="contact" class="col-md-5 -minheight0">
+                                                                    <div id="phone" class="srp-item__price clearfix hidden-sm hidden-xs">
+                                                                        <span>
+                                                                            <span style="font-size: 12px;">Phone: </span>
+                                                                            <span style="color:#DB1212;font-size: 12px;"> @cook.cook_phone  </span>
+                                                                        </span>
+                                                                        <br><br>
+                                                                    </div>
+
+                                                                    <div id="address" class="srp-item__price clearfix hidden-sm hidden-xs">
+                                                                        <span>
+                                                                            <span class="srp-item__price-head" style="font-size: 12px;">Working Areas: </span>
+                                                                            <span style="color:#DB1212;font-size: 12px;">
+                                                                                @cook.cook_address
+                                                                            </span>
+
+                                                                        </span>
+                                                                        <br><br>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+                                            }
+                                        }
+                                    </div>
+
+                                    <div class="z-row z-padding" id="LPG">
+                                        @if (ViewBag.LpgDetails != null)
+                                        {
+                                            foreach (var lpg in ViewBag.LpgDetails)
+                                            {
+                                                <div class="mainRow">
+                                                    <div id="dataRow" class="clearfix -relative" style="position: relative">
+                                                        <div id="imgCol" class="col-md-3 no-padding-sm no-padding-md">
+                                                            <a target="_blank" class="srp-item__image_link js__srp-item__image__link js__srp-listing" data-section="Photo" style=" display: inline-block; z-index: 2;" href="/bangalore/eternity-serene-kodichikkanahalli/" title="">
+                                                                <img src="https://images3.roofandfloor.com/listing_49e66cf8ad89150889c236a0ee0bb38f/480x320/eternity-serene-in-bommanahalli-elevation-photo-nxg.jpg" style="width: 100%;min-height: 175px">
+                                                            </a>
+                                                            <a class="more" data-toggle="modal" data-target="#myModal">+ More</a>
+
+                                                            <input type="hidden" value="@lpg.lpg_id" class="anim_Id" />
+                                                            <input type="hidden" value="@lpg.lpg_imgcount" class="anim_imgcount" />
+                                                            <input type="hidden" value="lpg" class="anim_type" />
+
+                                                        </div>
+                                                        <div id="descriptionCol" class="col-md-9 srp-item__bottom-block" style="position: relative;">
+                                                            <div class="descriptionInnner">
+                                                                <div id="mainDescription" class="col-md-7 srp-item__content hidden-xs hidden-sm">
+                                                                    <p class="rowTitle">
+                                                                        @lpg.lpg_name
+                                                                    </p>
+                                                                    <div id="rent" class="priceRange" style="">
+                                                                        Cost (Approx): 	<span style="color:#DB1212">@lpg.lpg_cost</span>
+                                                                    </div>
+                                                                    <br>
+                                                                    <div id="description" class="description" style="">
+                                                                        <span class="hidden-sm hidden-xs">
+                                                                            Type: <span style="color:#DB1212">@lpg.lpg_type</span>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                                <div id="contact" class="col-md-5 -minheight0">
+                                                                    <div id="phone" class="srp-item__price clearfix hidden-sm hidden-xs">
+                                                                        <span>
+                                                                            <span style="font-size: 12px;">Phone: </span>
+                                                                            <span style="color:#DB1212;font-size: 12px;"> @lpg.lpg_phone  </span>
+                                                                        </span>
+                                                                        <br><br>
+                                                                    </div>
+
+                                                                    <div id="address" class="srp-item__price clearfix hidden-sm hidden-xs">
+                                                                        <span>
+                                                                            <span class="srp-item__price-head" style="font-size: 12px;">Address: </span>
+                                                                            <span style="color:#DB1212;font-size: 12px;">
+                                                                                @lpg.lpg_address
+                                                                            </span>
+
+                                                                        </span>
+                                                                        <br><br>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+                                            }
+                                        }
+                                    </div>
+
+                                    <div class="z-row z-padding" id="internet/Mobile">
+                                        @if (ViewBag.InternetDetails != null)
+                                        {
+                                            foreach (var internet in ViewBag.InternetDetails)
+                                            {
+                                                <div class="mainRow">
+                                                    <div id="dataRow" class="clearfix -relative" style="position: relative">
+                                                        <div id="imgCol" class="col-md-3 no-padding-sm no-padding-md">
+                                                            <a target="_blank" class="srp-item__image_link js__srp-item__image__link js__srp-listing" data-section="Photo" style=" display: inline-block; z-index: 2;" href="/bangalore/eternity-serene-kodichikkanahalli/" title="">
+                                                                <img src="https://images3.roofandfloor.com/listing_49e66cf8ad89150889c236a0ee0bb38f/480x320/eternity-serene-in-bommanahalli-elevation-photo-nxg.jpg" style="width: 100%;min-height: 175px">
+                                                            </a>
+                                                            <a class="more" data-toggle="modal" data-target="#myModal">+ More</a>
+
+                                                            <input type="hidden" value="@internet.internet_id" class="anim_Id" />
+                                                            <input type="hidden" value="@internet.internet_imgcount" class="anim_imgcount" />
+                                                            <input type="hidden" value="internet" class="anim_type" />
+
+                                                        </div>
+                                                        <div id="descriptionCol" class="col-md-9 srp-item__bottom-block" style="position: relative;">
+                                                            <div class="descriptionInnner">
+                                                                <div id="mainDescription" class="col-md-7 srp-item__content hidden-xs hidden-sm">
+                                                                    <p class="rowTitle">
+                                                                        @internet.internet_name
+                                                                    </p>
+                                                                    <div id="rent" class="priceRange" style="">
+                                                                        Price: 	<span style="color:#DB1212">@internet.internet_price </span>
+                                                                    </div>
+                                                                    <br>
+                                                                    <div id="description" class="description" style="">
+                                                                        <span class="hidden-sm hidden-xs">
+                                                                            Type: <span style="color:#DB1212">@internet.internet_type</span>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                                <div id="contact" class="col-md-5 -minheight0">
+                                                                    <div id="phone" class="srp-item__price clearfix hidden-sm hidden-xs">
+                                                                        <span>
+                                                                            <span style="font-size: 12px;">Phone: </span>
+                                                                            <span style="color:#DB1212;font-size: 12px;"> @internet.internet_phone </span>
+                                                                        </span>
+                                                                        <br><br>
+                                                                    </div>
+
+                                                                    <div id="address" class="srp-item__price clearfix hidden-sm hidden-xs">
+                                                                        <span>
+                                                                            <span class="srp-item__price-head" style="font-size: 12px;">Address: </span>
+                                                                            <span style="color:#DB1212;font-size: 12px;">
+                                                                                @internet.internet_address
+                                                                            </span>
+
+                                                                        </span>
+                                                                        <br><br>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+
+
+
+                                                @*<div class="mainRow">
+                                                        <div id="dataRow" class="clearfix -relative" style="position: relative">
+                                                            <div id="imgCol" class="col-md-3 no-padding-sm no-padding-md">
+                                                                <a target="_blank" class="srp-item__image_link js__srp-item__image__link js__srp-listing" data-section="Photo" style=" display: inline-block; z-index: 2;" href="/bangalore/eternity-serene-kodichikkanahalli/" title="">
+                                                                    <img src="https://images3.roofandfloor.com/listing_49e66cf8ad89150889c236a0ee0bb38f/480x320/eternity-serene-in-bommanahalli-elevation-photo-nxg.jpg" style="width: 100%;min-height: 175px">
+                                                                </a>
+                                                                <a class="more" data-toggle="modal" data-target="#myModal">+ More</a>
+                                                            </div>
+                                                            <div id="descriptionCol" class="col-md-9 srp-item__bottom-block" style="position: relative;">
+                                                                <div class="descriptionInnner">
+                                                                    <div id="mainDescription" class="col-md-7 srp-item__content hidden-xs hidden-sm">
+                                                                        <p class="rowTitle">
+                                                                            Docomo Center, BTM
+                                                                        </p>
+                                                                        <div id="rent" class="priceRange" style="">
+                                                                            Price: 	<span style="color:#DB1212">Based on plan </span>
+                                                                        </div>
+                                                                        <br>
+                                                                        <div id="description" class="description" style="">
+                                                                            <span class="hidden-sm hidden-xs">
+                                                                                Type: <span style="color:#DB1212">Sim card, wireless device, recharge</span>
+                                                                            </span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div id="contact" class="col-md-5 -minheight0">
+                                                                        <div id="phone" class="srp-item__price clearfix hidden-sm hidden-xs">
+                                                                            <span>
+                                                                                <span style="font-size: 12px;">Phone: </span>
+                                                                                <span style="color:#DB1212;font-size: 12px;"> 9739172067/ 9739172367  </span>
+                                                                            </span>
+                                                                            <br><br>
+                                                                        </div>
+
+                                                                        <div id="address" class="srp-item__price clearfix hidden-sm hidden-xs">
+                                                                            <span>
+                                                                                <span class="srp-item__price-head" style="font-size: 12px;">Address: </span>
+                                                                                <span style="color:#DB1212;font-size: 12px;">
+                                                                                    Kaveri Nagar, Bommanahalli Circle, Off Hosur Road <br>Landmark: Near Silicon City primary School
+                                                                                </span>
+
+                                                                            </span>
+                                                                            <br><br>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+
+
+
+                                                    </div>*@
+
+                                            }
+                                        }
+                                    </div>
+
+                                    <div class="z-row z-padding" id="OtherServices">
+
+                                        @if (ViewBag.Laundry != null)
+                                        {
+                                            <p><span class="serviceHeading">Laundry Service</span></p>
+                                            foreach (var laundry in ViewBag.Laundry)
+                                            {
+                                                <div class="mainRow">
+                                                    <div id="dataRow" class="clearfix -relative" style="position: relative">
+                                                        <div id="imgCol" class="col-md-3 no-padding-sm no-padding-md">
+                                                            <a target="_blank" class="srp-item__image_link js__srp-item__image__link js__srp-listing" data-section="Photo" style=" display: inline-block; z-index: 2;" href="/bangalore/eternity-serene-kodichikkanahalli/" title="">
+                                                                <img src="https://images3.roofandfloor.com/listing_49e66cf8ad89150889c236a0ee0bb38f/480x320/eternity-serene-in-bommanahalli-elevation-photo-nxg.jpg" style="width: 100%;min-height: 175px">
+                                                            </a>
+                                                            <a class="more" data-toggle="modal" data-target="#myModal">+ More</a>
+
+                                                            <input type="hidden" value="@laundry.laundry_id" class="anim_Id" />
+                                                            <input type="hidden" value="@laundry.laundry_imgcount" class="anim_imgcount" />
+                                                            <input type="hidden" value="laundry" class="anim_type" />
+
+                                                        </div>
+                                                        <div id="descriptionCol" class="col-md-9 srp-item__bottom-block" style="position: relative;">
+                                                            <div class="descriptionInnner">
+                                                                <div id="mainDescription" class="col-md-7 srp-item__content hidden-xs hidden-sm">
+                                                                    <p class="rowTitle">
+                                                                        @laundry.laundry_name
+                                                                    </p>
+                                                                    <div id="rent" class="priceRange" style="">
+                                                                        Price: 	<span style="color:#DB1212">@laundry.laundry_rate</span>
+                                                                    </div>
+                                                                    <br>
+                                                                    <div id="description" class="description" style="">
+                                                                        <span class="hidden-sm hidden-xs">
+                                                                            Pick and drop available: <span style="color:#DB1212">@laundry.laundry_pick</span>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                                <div id="contact" class="col-md-5 -minheight0">
+                                                                    <div id="phone" class="srp-item__price clearfix hidden-sm hidden-xs">
+                                                                        <span>
+                                                                            <span style="font-size: 12px;">Phone: </span>
+                                                                            <span style="color:#DB1212;font-size: 12px;"> @laundry.laundry_phone  </span>
+                                                                        </span>
+                                                                        <br><br>
+                                                                    </div>
+
+                                                                    <div id="address" class="srp-item__price clearfix hidden-sm hidden-xs">
+                                                                        <span>
+                                                                            <span class="srp-item__price-head" style="font-size: 12px;">Address: </span>
+                                                                            <span style="color:#DB1212;font-size: 12px;">
+                                                                                @laundry.laundry_address
+                                                                            </span>
+
+                                                                        </span>
+                                                                        <br><br>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+                                                <br /><br />
+
+                                            }
+                                        }
+
+
+                                        @if (ViewBag.Salon != null)
+                                        {
+                                            <p><span class="serviceHeading">Salon Service</span></p>
+                                            foreach (var salon in ViewBag.Salon)
+                                            {
+                                                <div class="mainRow">
+                                                    <div id="dataRow" class="clearfix -relative" style="position: relative">
+                                                        <div id="imgCol" class="col-md-3 no-padding-sm no-padding-md">
+                                                            <a target="_blank" class="srp-item__image_link js__srp-item__image__link js__srp-listing" data-section="Photo" style=" display: inline-block; z-index: 2;" href="/bangalore/eternity-serene-kodichikkanahalli/" title="">
+                                                                <img src="https://images3.roofandfloor.com/listing_49e66cf8ad89150889c236a0ee0bb38f/480x320/eternity-serene-in-bommanahalli-elevation-photo-nxg.jpg" style="width: 100%;min-height: 175px">
+                                                            </a>
+                                                            <a class="more" data-toggle="modal" data-target="#myModal">+ More</a>
+
+                                                            <input type="hidden" value="@salon.salon_id" class="anim_Id" />
+                                                            <input type="hidden" value="@salon.salon_imgcount" class="anim_imgcount" />
+                                                            <input type="hidden" value="salon" class="anim_type" />
+
+                                                        </div>
+                                                        <div id="descriptionCol" class="col-md-9 srp-item__bottom-block" style="position: relative;">
+                                                            <div class="descriptionInnner">
+                                                                <div id="mainDescription" class="col-md-7 srp-item__content hidden-xs hidden-sm">
+                                                                    <p class="rowTitle">
+                                                                        @salon.salon_name
+                                                                    </p>
+                                                                    <div id="rent" class="priceRange" style="">
+                                                                        Type: 	<span style="color:#DB1212">@salon.salon_type </span>
+                                                                    </div>
+                                                                    <br>
+                                                                    <div id="description" class="description" style="">
+                                                                        <span class="hidden-sm hidden-xs">
+                                                                            Services: <span style="color:#DB1212">@salon.salon_services</span>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                                <div id="contact" class="col-md-5 -minheight0">
+                                                                    <div id="phone" class="srp-item__price clearfix hidden-sm hidden-xs">
+                                                                        <span>
+                                                                            <span style="font-size: 12px;">Phone: </span>
+                                                                            <span style="color:#DB1212;font-size: 12px;"> @salon.salon_phone </span>
+                                                                        </span>
+                                                                        <br><br>
+                                                                    </div>
+
+                                                                    <div id="address" class="srp-item__price clearfix hidden-sm hidden-xs">
+                                                                        <span>
+                                                                            <span class="srp-item__price-head" style="font-size: 12px;">Address: </span>
+                                                                            <span style="color:#DB1212;font-size: 12px;">
+                                                                                @salon.salon_address
+                                                                            </span>
+
+                                                                        </span>
+                                                                        <br><br>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+
+
+
+                                                </div>
+                                            }
+                                        }
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <span>Your Dashboard will be enabled after successful payment.  </span>
+                            <span>Kindly</span> @Html.ActionLink("Pay Here.", "RequestHandler", "Home", null, new { style = "color: blue;text-decoration: underline;pointer: hand;cursor: pointer;" })
+                            @*@Html.ActionLink("Click Here", "RequestHandler", "Home", null, new { style = "color: blue;text-decoration: underline;pointer: hand;cursor: pointer;" })*@
+
+                            @*<span>to finish the payment </span>*@
+                            <div id="demo-nested" class="tabbed-nav z-tabs-loading " style="pointer-events: none; opacity: 0.4;" data-options='{"deeplinking": false, "multiline":true,"manualTabId": false, "defaultTab": "tab1", "theme": "white","orientation": "horizontal", "position": "top-compact", "size": "medium", "delayAjax":350}'>
+                                <ul>
+                                    <li><a>Accomodation</a></li>
+                                    <li><a>Restaurants</a></li>
+                                    <li><a>Market</a></li>
+                                    <li><a>Cook</a></li>
+                                    <li><a>LPG</a></li>
+                                    <li><a>Internet/Mobile</a></li>
+                                    <li><a>Other Services</a></li>
+                                </ul>
+                                <span class="z-spinner"></span>
+                                <div>
+                                    <div class="z-row z-padding" id="Accomodation">
+                                        @*<div class="mainRow">
+                                                <div id="dataRow" class="clearfix -relative" style="position: relative">
+                                                    <div id="imgCol" class="col-md-3 no-padding-sm no-padding-md">
+                                                        <a target="_blank" class="srp-item__image_link js__srp-item__image__link js__srp-listing" data-section="Photo" style=" display: inline-block; z-index: 2;" href="/bangalore/eternity-serene-kodichikkanahalli/" title="">
+                                                            <img src="https://images3.roofandfloor.com/listing_49e66cf8ad89150889c236a0ee0bb38f/480x320/eternity-serene-in-bommanahalli-elevation-photo-nxg.jpg" style="width: 100%;min-height: 175px">
+                                                        </a>
+                                                        <a class="more" data-toggle="modal" data-target="#myModal">+ More</a>
+                                                    </div>
+                                                    <div id="descriptionCol" class="col-md-9 srp-item__bottom-block" style="position: relative;">
+                                                        <div class="descriptionInnner">
+                                                            <div id="mainDescription" class="col-md-7 srp-item__content hidden-xs hidden-sm">
+                                                                <p class="rowTitle">
+                                                                    Eternity Serene, Kodichikkanahalli
+                                                                </p>
+                                                                <div id="rent" class="priceRange" style="">
+                                                                    Rent: 	<span style="color:#DB1212">Rs 5500 - 8000</span>
+                                                                </div>
+                                                                <br>
+                                                                <div id="description" class="description" style="">
+                                                                    <span class="hidden-sm hidden-xs">
+                                                                        Description: <span style="color:#DB1212">Eternity Serene is one of the popular residential developments in Hosur Road, neighborhood of Bangalore. It is among the completed projects of its Builder. It has lavish yet thoughtfully designed residences</span>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                            <div id="contact" class="col-md-5 -minheight0">
+                                                                <div id="phone" class="srp-item__price clearfix hidden-sm hidden-xs">
+                                                                    <span>
+                                                                        <span style="font-size: 12px;">Phone: </span>
+                                                                        <span style="color:#DB1212;font-size: 12px;"> 9739172067/ 9739172367  </span>
+                                                                    </span>
+                                                                    <br><br>
+                                                                </div>
+
+                                                                <div id="address" class="srp-item__price clearfix hidden-sm hidden-xs">
+                                                                    <span>
+                                                                        <span class="srp-item__price-head" style="font-size: 12px;">Address: </span>
+                                                                        <span style="color:#DB1212;font-size: 12px;">
+                                                                            Kaveri Nagar, Bommanahalli Circle, Off Hosur Road <br>Landmark: Near Silicon City primary School
+                                                                        </span>
+
+                                                                    </span>
+                                                                    <br><br>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+
+                                            </div>*@
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+    </div>
+</div>
+<input id="sessionInput" type="hidden" value='@Session["CurrentTab"]' />
+
+
+
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        </div>
+    </div>
+</div>
+<form action="/Home/RequestHandler" method="post">
+    <div class="modal fade" id="myLargeModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal fade in" id="myLargeModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="false" style="display: block;">
+            <div class="modal-dialog modal-mg" style="float: right;margin-top: 0px;">
+                <div class="modal-content">
+                    @*<div class="modal-header" style="
+                                max-height: 66px;
+                            ">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h4 class="modal-title" id="myLargeModalLabel" style="
+                                color: #ffc90e;
+                            ">
+                                GoFinc - The Payment Page
+                            </h4>
+                        </div>*@
+                    <div class="modal-body" style="max-height: 218px;overflow-y: auto;padding: 0px;">
+                        <div style="position: relative;padding: 0px 20px;overflow-x: hidden !important;/* transition: opacity 0.6s cubic-bezier(0.2, 1, 0.3, 1); */">
+                            <table style="margin: 2.5em 0 0.75em;width: 100%;color: #ff6a00;text-align: left;text-transform: uppercase;letter-spacing: 1px;font-size: 0.85em;line-height: 1.5;transition: opacity 0.6s cubic-bezier(0.2, 1, 0.3, 1);">
+                                <thead>
+                                    <tr>
+                                        <th style="color: #517cad;line-height: 2.5;">Your Order</th>
+                                        <th style="color: #517cad;">Price</th>
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                    <tr><th colspan="2">Total <span class="checkout__total">$56.20</span></th></tr>
+                                </tfoot>
+                                <tbody>
+                                    <tr><td>Imitations <span>Mark Lanegan</span></td><td>$9.90</td></tr>
+                                    <tr><td>In The Silence <span>Ásgeir</span></td><td>$5.50</td></tr>
+                                    <tr><td>Out Of Exile <span>Audioslave</span></td><td>$11.00</td></tr>
+                                    <tr><td>London <span>Frank Sinatra</span></td><td>$19.90</td></tr>
+                                    <tr><td>Cure For Pain <span>Morphine</span></td><td>$9.90</td></tr>
+                                    <tr>
+                                        <td>Parameter Name:</td>
+                                        <td>Parameter Value:</td>
+                                    </tr>
+
+                                    @*
+                                        <tr>
+                                            <td>TID	:</td>
+                                            <td><input type="text" name="tid" id="tid" readonly /></td>
+                                        </tr>*@
+                                    @*
+                                        <tr>
+                                            <td>Merchant Id</td>
+                                            <td><input type="text" name="merchant_id" id="merchant_id" value="121242" /></td>
+                                        </tr>*@
+
+                                    <tr><td>Order Id </td><td><label name="order_id" id="order_id" />111</td></tr>
+                                    <tr><td>Amount </td><td><label name="amount" id="amount" />111</td></tr>
+                                    <tr><td>Currency </td><td><label name="currency" id="currency" />INR</td></tr>
+
+                                    @*
+                                        <tr>
+                                            <td>Order Id</td>
+                                            <td>   <input type="text" name="order_id" value="111" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Amount</td>
+                                            <td><input type="text" name="amount" value="1.00" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Currency</td>
+                                            <td><input type="text" name="currency" value="INR" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Redirect URL</td>
+                                            <td><input type="text" name="redirect_url" value="http://192.168.0.89/MCPG.ASP.net.2.0.kit/ccavResponseHandler.aspx" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Cancel URL</td>
+                                            <td><input type="text" name="cancel_url" value="http://192.168.0.96/mcpg_new/iframe/ccavResponseHandler.php" /></td>
+                                        </tr>*@
+                                </tbody>
+                            </table><!-- /checkout__summary -->
+                            <input type="hidden" name="tid" id="tid" readonly />
+                            <input type="hidden" name="merchant_id" id="merchant_id" value="121242" />
+                            <input type="hidden" name="order_id" id="order_id" value="111" />
+                            <input type="hidden" name="amount" id="amount" value="1" />
+                            <input type="hidden" name="currency" id="amount" value="INR" />
+                            <input type="hidden" name="redirect_url" value="http://192.168.0.89/MCPG.ASP.net.2.0.kit/ccavResponseHandler.aspx" />
+                            <input type="hidden" name="cancel_url" value="http://192.168.0.96/mcpg_new/iframe/ccavResponseHandler.php" />
+
+                        </div><!-- /checkout__order-inner -->
+                    </div>
+                    <div class="modal-footer">
+                        @*<button type="button" class="btn btn-primary">Paynow</button>*@
+                        @*<button type="button" class="btn btn-success">Internet Banking</button>*@
+                        <input type="submit" class="btn btn-success" value="Proceed to Payment" />
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+</form>
+
+<script src="~/ImageAnimation/js-image-slider.js"></script>
+<script src="~/Scripts/jquery1.8.2.min.js"></script>
+<script src="~/Scripts/google-analytics.min.js"></script>
+
+
+<script>
+
+
+    $('.more').click(function (event) {
+        var url = '@Url.Action("ViewAnimation")';
+        var id = $(this).parent().find('.anim_Id').val();
+        var type = $(this).parent().find('.anim_type').val();
+        var imgCount = $(this).parent().find('.anim_imgcount').val();
+
+        $.ajax({
+            type: "GET",
+            url: url,
+            data: JSON,
+            cache: false,
+            data: {
+                type: type,
+                id: id,
+                imgCount: imgCount
+            },
+            success: function (data) {
+                //  alert(data);
+                // inject your content into the "placeholder" div
+                $('#myModal').html(data);
+            },
+            error: function (err) {
+                // alert(err);
+                console.log(err);
+            }
+        });
+    })
+
+    var val = '@Session["FirstPaymentStatus"]';
+    if (val == "Success") {
+        $("#myModalPopUp").modal();
+    }
+
+
+
+</script>

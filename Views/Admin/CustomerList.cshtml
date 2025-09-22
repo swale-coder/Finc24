@@ -1,0 +1,47 @@
+﻿@{
+    ViewBag.Title = "CustomerList";
+    Layout = "~/Views/Shared/_Layout_DashBoard.cshtml";
+}
+
+<h2>CustomerList</h2>
+
+@using (Html.BeginForm())
+{
+    <table style="width: 100%">
+        <tr style="text-align: left;">
+            <th style="text-align: left;font-size: 11px; font-weight: bold;width:55%;">
+                id
+            </th>
+            @* <th style="text-align: left;font-size: 11px; font-weight: bold;width:55%;">
+
+                </th>*@
+            <th style="text-align: left; padding-right:14px;  font-size: 11px;font-weight: bold;width:15%;">
+                Name
+            </th>
+            <th style="text-align: left; font-size: 11px; font-weight: bold;width:15%;">
+
+            </th>
+        </tr>
+        @foreach (var item in ViewBag.CustomerList)
+        {
+            <tr>
+                <td style=" text-align: left;font-size: 11px;">
+                    @Html.Raw(item.cust_id)
+                </td>
+                <td  style="text-align: left;font-size: 11px;width:55%;">
+                    @Html.Raw(item.cust_name)
+                    
+                </td>
+
+                <td style="text-align: right;">
+                    @Html.ActionLink("View", "CustomerDetails", "Admin", new { Area = "Admin", id = @item.cust_id }, new { style = "font-size:11px;color:blue;" })
+                </td>
+            </tr>
+        }
+    </table>
+
+
+
+
+
+}

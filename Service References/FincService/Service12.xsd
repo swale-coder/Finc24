@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/FincService" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/FincService" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ArrayOfcustomer">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="customer" nillable="true" type="tns:customer" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfcustomer" nillable="true" type="tns:ArrayOfcustomer" />
+  <xs:complexType name="customer">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="cust_Company" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="cust_IsPaid" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="cust_Location" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="cust_Package" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="cust_PrefferedLocation_Type" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="cust_RegisterDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="cust_age" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="cust_budget" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="cust_convinient_time" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="cust_dob" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="cust_email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="cust_gender" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="cust_id" type="xs:int" />
+      <xs:element minOccurs="0" name="cust_interested_location" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="cust_name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="cust_nationality" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="cust_orderID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="cust_other_requirements" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="cust_password" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="cust_phone" type="xs:decimal" />
+      <xs:element minOccurs="0" name="cust_state" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="cust_tid" nillable="true" type="xs:long" />
+      <xs:element minOccurs="0" name="payment_Status" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="customer" nillable="true" type="tns:customer" />
+  <xs:complexType name="customer_service">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="accommodation_id" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="cook_id" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="customer_id" type="xs:int" />
+      <xs:element minOccurs="0" name="customer_service_id" type="xs:int" />
+      <xs:element minOccurs="0" name="internet_id" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="laundry_id" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="lpg_id" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="market_id" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="packers_id" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="restaurant_id" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="salon_id" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="customer_service" nillable="true" type="tns:customer_service" />
+  <xs:complexType name="cook">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="cook_address" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="cook_age" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="cook_areas" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="cook_id" type="xs:int" />
+      <xs:element minOccurs="0" name="cook_id_proof" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="cook_imgcount" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="cook_name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="cook_phone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="cook_price" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="cook_speciality" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="location_id" nillable="true" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="cook" nillable="true" type="tns:cook" />
+  <xs:complexType name="restaurant">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="location_id" type="xs:int" />
+      <xs:element minOccurs="0" name="rest_address" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="rest_budget" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="rest_id" type="xs:int" />
+      <xs:element minOccurs="0" name="rest_imgcount" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="rest_name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="rest_phone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="rest_speciality" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="restaurant" nillable="true" type="tns:restaurant" />
+  <xs:complexType name="lpg">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="location_id" type="xs:int" />
+      <xs:element minOccurs="0" name="lpg_address" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="lpg_cost" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="lpg_id" type="xs:int" />
+      <xs:element minOccurs="0" name="lpg_imgcount" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="lpg_name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="lpg_owner" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="lpg_phone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="lpg_type" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="lpg" nillable="true" type="tns:lpg" />
+  <xs:complexType name="accommodation">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="acco_address" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="acco_desc" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="acco_id" type="xs:int" />
+      <xs:element minOccurs="0" name="acco_imgcount" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="acco_name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="acco_owner" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="acco_phone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="acco_rent" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="acco_sharing_type" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="acco_type" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="location_id" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="accommodation" nillable="true" type="tns:accommodation" />
+  <xs:complexType name="laundry">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="laundry_address" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="laundry_desc" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="laundry_id" type="xs:int" />
+      <xs:element minOccurs="0" name="laundry_imgcount" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="laundry_name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="laundry_phone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="laundry_pick" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="laundry_rate" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="location_id" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="laundry" nillable="true" type="tns:laundry" />
+  <xs:complexType name="salon">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="location_id" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="salon_address" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="salon_id" type="xs:int" />
+      <xs:element minOccurs="0" name="salon_imgcount" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="salon_name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="salon_phone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="salon_services" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="salon_type" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="salon" nillable="true" type="tns:salon" />
+  <xs:complexType name="internet">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="internet_address" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="internet_id" type="xs:int" />
+      <xs:element minOccurs="0" name="internet_imgcount" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="internet_name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="internet_phone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="internet_price" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="internet_type" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="location_id" nillable="true" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="internet" nillable="true" type="tns:internet" />
+  <xs:complexType name="market">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="location_id" type="xs:int" />
+      <xs:element minOccurs="0" name="market_address" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="market_bargain" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="market_id" type="xs:int" />
+      <xs:element minOccurs="0" name="market_imgcount" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="market_name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="market_speciality" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="market_type" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="market" nillable="true" type="tns:market" />
+  <xs:complexType name="packer">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="location_id" type="xs:int" />
+      <xs:element minOccurs="0" name="pack_desc" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="pack_id" type="xs:int" />
+      <xs:element minOccurs="0" name="pack_imgcount" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="pack_name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="pack_phone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="pack_rate" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="packer" nillable="true" type="tns:packer" />
+</xs:schema>

@@ -1,0 +1,588 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F2332AD7-DB49-42EF-87F8-88BA9EB1090C}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Finc24</RootNamespace>
+    <AssemblyName>Finc24</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <TargetFrameworkProfile />
+    <Use64BitIISExpress />
+    <UseGlobalApplicationHostFile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>D:\PriyaMVC\WcfService1\ClassLibrary1\bin\Debug\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="MCPG.CCA.Util">
+      <HintPath>..\..\..\Downloads\ASP.Net_Kit_Version_3.5\IFRAME_KIT\libs\MCPG.CCA.Util.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Web.Infrastructure.2.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Web.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.2\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.2\lib\net45\System.Web.Webpages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Deployment">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.2\lib\net45\System.Web.Webpages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.2\lib\net45\System.Web.Webpages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.2\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.2\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Finc24.dll" />
+    <Content Include="bin\Finc24.pdb" />
+    <Content Include="Content\bootstrap-datepicker.css" />
+    <Content Include="Content\Payment\checkout-cornerflat.css" />
+    <Content Include="Content\Payment\demo.css" />
+    <Content Include="Content\Payment\font-awesome.min.css" />
+    <Content Include="Content\Payment\font-awesome11.min.css" />
+    <Content Include="Content\Registration.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Styles\animate.min.css" />
+    <Content Include="Content\Styles\bootstrap.min.css" />
+    <Content Include="Content\Styles\custom-style.css" />
+    <Content Include="Content\Styles\jquery.vegas.min.css" />
+    <Content Include="Content\Styles\materialize.min.css" />
+    <Content Include="Content\Styles\owl.carousel.css" />
+    <Content Include="Content\Styles\owl.theme.css" />
+    <Content Include="Content\Styles\pixeden-icons.css" />
+    <Content Include="Content\Styles\responsive.css" />
+    <Content Include="Content\Styles\styles%281%29.css" />
+    <Content Include="Content\Styles\styles.css" />
+    <Content Include="Content\Styles\styles_dashboard.min.css" />
+    <Content Include="Dropdown\bootstrap-select.css" />
+    <Content Include="Dropdown\bootstrap-select.js" />
+    <Content Include="Dropdown\bootstrap-select.min.css" />
+    <Content Include="Global.asax" />
+    <Content Include="ImageAnimation\bootstrap.css" />
+    <Content Include="ImageAnimation\js-image-slider.css" />
+    <Content Include="ImageAnimation\js-image-slider.js" />
+    <Content Include="ImageAnimation\Site.css" />
+    <Content Include="Images\1%281%29.jpg" />
+    <Content Include="Images\1%282%29.jpg" />
+    <Content Include="Images\1.jpg" />
+    <Content Include="Images\1.png" />
+    <Content Include="Images\10.jpg" />
+    <Content Include="Images\11.jpg" />
+    <Content Include="Images\12.jpg" />
+    <Content Include="Images\2%281%29.jpg" />
+    <Content Include="Images\2.jpg" />
+    <Content Include="Images\2.png" />
+    <Content Include="Images\3%281%29.jpg" />
+    <Content Include="Images\3.jpg" />
+    <Content Include="Images\3.png" />
+    <Content Include="Images\4.jpg" />
+    <Content Include="Images\4.png" />
+    <Content Include="Images\5.jpg" />
+    <Content Include="Images\5.png" />
+    <Content Include="Images\6.jpg" />
+    <Content Include="Images\6.png" />
+    <Content Include="Images\7.jpg" />
+    <Content Include="Images\8.jpg" />
+    <Content Include="Images\9.jpg" />
+    <Content Include="Images\a12.png" />
+    <Content Include="Images\Accomodation1.jpg" />
+    <Content Include="Images\Accomodation10.jpg" />
+    <Content Include="Images\Accomodation11.jpg" />
+    <Content Include="Images\Accomodation2.jpg" />
+    <Content Include="Images\Accomodation3.jpg" />
+    <Content Include="Images\Accomodation4.jpg" />
+    <Content Include="Images\Accomodation5.jpg" />
+    <Content Include="Images\Accomodation6.jpg" />
+    <Content Include="Images\Accomodation7.jpg" />
+    <Content Include="Images\Accomodation8.jpg" />
+    <Content Include="Images\b05.png" />
+    <Content Include="Images\bg2.jpg" />
+    <Content Include="Images\bg2_1.jpg" />
+    <Content Include="Images\carticon1.jpg" />
+    <Content Include="Images\Dashboard\accommodation\1_1.jpg" />
+    <Content Include="Images\Dashboard\accommodation\1_2.jpg" />
+    <Content Include="Images\Dashboard\accommodation\2_1.jpg" />
+    <Content Include="Images\Dashboard\accommodation\2_2.jpg" />
+    <Content Include="Images\Dashboard\cook\1_1.jpg" />
+    <Content Include="Images\Dashboard\cook\1_2.jpg" />
+    <Content Include="Images\Dashboard\cook\2_1.jpg" />
+    <Content Include="Images\Dashboard\cook\2_2.jpg" />
+    <Content Include="Images\Dashboard\internet\1_1.jpg" />
+    <Content Include="Images\Dashboard\internet\1_2.jpg" />
+    <Content Include="Images\Dashboard\internet\2_1.jpg" />
+    <Content Include="Images\Dashboard\internet\2_2.jpg" />
+    <Content Include="Images\Dashboard\laundry\1_1.jpg" />
+    <Content Include="Images\Dashboard\laundry\1_2.jpg" />
+    <Content Include="Images\Dashboard\laundry\2_1.jpg" />
+    <Content Include="Images\Dashboard\laundry\2_2.jpg" />
+    <Content Include="Images\Dashboard\lpg\1_1.jpg" />
+    <Content Include="Images\Dashboard\lpg\1_2.jpg" />
+    <Content Include="Images\Dashboard\lpg\2_1.jpg" />
+    <Content Include="Images\Dashboard\lpg\2_2.jpg" />
+    <Content Include="Images\Dashboard\market\1_1.jpg" />
+    <Content Include="Images\Dashboard\market\1_2.jpg" />
+    <Content Include="Images\Dashboard\market\2_1.jpg" />
+    <Content Include="Images\Dashboard\market\2_2.jpg" />
+    <Content Include="Images\Dashboard\packers\1_1.jpg" />
+    <Content Include="Images\Dashboard\packers\1_2.jpg" />
+    <Content Include="Images\Dashboard\packers\2_1.jpg" />
+    <Content Include="Images\Dashboard\packers\2_2.jpg" />
+    <Content Include="Images\Dashboard\restaurant\1_1.jpg" />
+    <Content Include="Images\Dashboard\restaurant\1_2.jpg" />
+    <Content Include="Images\Dashboard\restaurant\2_1.jpg" />
+    <Content Include="Images\Dashboard\restaurant\2_2.jpg" />
+    <Content Include="Images\Dashboard\salon\1_1.jpg" />
+    <Content Include="Images\Dashboard\salon\1_2.jpg" />
+    <Content Include="Images\Dashboard\salon\2_1.jpg" />
+    <Content Include="Images\Dashboard\salon\2_2.jpg" />
+    <Content Include="Images\Dashboard_1\accommodation\2_1.jpg" />
+    <Content Include="Images\Dashboard_1\accommodation\2_2.jpg" />
+    <Content Include="Images\Dashboard_1\accommodation\2_3.jpg" />
+    <Content Include="Images\Dashboard_1\accommodation\2_4.jpg" />
+    <Content Include="Images\Dashboard_1\cook\17_2.jpg" />
+    <Content Include="Images\Dashboard_1\cook\17_3.jpg" />
+    <Content Include="Images\Dashboard_1\cook\19_1.jpg" />
+    <Content Include="Images\Dashboard_1\cook\19_2.jpg" />
+    <Content Include="Images\Dashboard_1\cook\1_1.jpg" />
+    <Content Include="Images\Dashboard_1\cook\2_1.jpg" />
+    <Content Include="Images\Dashboard_1\cook\2_2.jpg" />
+    <Content Include="Images\Dashboard_1\internet\15_1.jpg" />
+    <Content Include="Images\Dashboard_1\internet\15_2.jpg" />
+    <Content Include="Images\Dashboard_1\internet\1_1.jpg" />
+    <Content Include="Images\Dashboard_1\internet\2_1.jpg" />
+    <Content Include="Images\Dashboard_1\internet\2_2.jpg" />
+    <Content Include="Images\Dashboard_1\laundry\3_1.jpg" />
+    <Content Include="Images\Dashboard_1\laundry\3_2.jpg" />
+    <Content Include="Images\Dashboard_1\laundry\3_3.jpg" />
+    <Content Include="Images\Dashboard_1\laundry\4_1.jpg" />
+    <Content Include="Images\Dashboard_1\lpg\1_1.jpg" />
+    <Content Include="Images\Dashboard_1\lpg\1_2.jpg" />
+    <Content Include="Images\Dashboard_1\lpg\2_1.jpg" />
+    <Content Include="Images\Dashboard_1\market\1_1.jpg" />
+    <Content Include="Images\Dashboard_1\market\1_2.jpg" />
+    <Content Include="Images\Dashboard_1\market\1_3.jpg" />
+    <Content Include="Images\Dashboard_1\market\2_1.jpg" />
+    <Content Include="Images\Dashboard_1\market\2_2.jpg" />
+    <Content Include="Images\Dashboard_1\packers\1_1.jpg" />
+    <Content Include="Images\Dashboard_1\packers\1_2.jpg" />
+    <Content Include="Images\Dashboard_1\packers\2_1.jpg" />
+    <Content Include="Images\Dashboard_1\packers\3_1.jpg" />
+    <Content Include="Images\Dashboard_1\packers\3_2.jpg" />
+    <Content Include="Images\Dashboard_1\packers\3_3.jpg" />
+    <Content Include="Images\Dashboard_1\restaurant\1_1.jpg" />
+    <Content Include="Images\Dashboard_1\restaurant\1_2.jpg" />
+    <Content Include="Images\Dashboard_1\restaurant\1_3.jpg" />
+    <Content Include="Images\Dashboard_1\restaurant\1_4.jpg" />
+    <Content Include="Images\Dashboard_1\restaurant\3_1.jpg" />
+    <Content Include="Images\Dashboard_1\restaurant\3_2.jpg" />
+    <Content Include="Images\Dashboard_1\restaurant\6_1.jpg" />
+    <Content Include="Images\Dashboard_1\salon\13_1.jpg" />
+    <Content Include="Images\Dashboard_1\salon\13_2.jpg" />
+    <Content Include="Images\Dashboard_1\salon\1_1.jpg" />
+    <Content Include="Images\Dashboard_1\salon\1_2.jpg" />
+    <Content Include="Images\Dashboard_1\salon\1_3.jpg" />
+    <Content Include="Images\Dashboard_1\salon\2_1.jpg" />
+    <Content Include="Images\Dashboard_1\salon\2_2.jpg" />
+    <Content Include="Images\Dashboard_1\salon\3_1.jpg" />
+    <Content Include="Images\finclogo - Copy.png" />
+    <Content Include="Images\finclogo.png" />
+    <Content Include="Images\finclogo1.png" />
+    <Content Include="Images\finclogo2.png" />
+    <Content Include="Images\finclogold.png" />
+    <Content Include="Images\finclogonewsmall.png" />
+    <Content Include="Images\finclogonew_1.png" />
+    <Content Include="Images\finclogonew_2.png" />
+    <Content Include="Images\icons\1.png" />
+    <Content Include="Images\icons\2.png" />
+    <Content Include="Images\icons\3.png" />
+    <Content Include="Images\icons\4.png" />
+    <Content Include="Images\images - Copy\1.jpg" />
+    <Content Include="Images\images - Copy\2.jpg" />
+    <Content Include="Images\images - Copy\3.jpg" />
+    <Content Include="Images\images - Copy\4.jpg" />
+    <Content Include="Images\images - Copy\5.jpg" />
+    <Content Include="Images\images - Copy\6.jpg" />
+    <Content Include="Images\images - Copy\7.jpg" />
+    <Content Include="Images\images - Copy\8a.jpg" />
+    <Content Include="Images\images - Copy\8b.jpg" />
+    <Content Include="Images\images - Copy\8c.jpg" />
+    <Content Include="Images\images - Copy\8d.jpg" />
+    <Content Include="Images\images - Copy\chainimage-shopping-cart-in-a-grocery-store.jpg" />
+    <Content Include="Images\images - Copy\cooking.jpg" />
+    <Content Include="Images\images - Copy\download.jpg" />
+    <Content Include="Images\images - Copy\gall-img04.jpg" />
+    <Content Include="Images\images - Copy\i1.jpg" />
+    <Content Include="Images\images - Copy\i2.jpg" />
+    <Content Include="Images\images - Copy\i3.jpg" />
+    <Content Include="Images\images - Copy\i4.jpg" />
+    <Content Include="Images\images - Copy\i4l.jpg" />
+    <Content Include="Images\images - Copy\i5.jpg" />
+    <Content Include="Images\images - Copy\i5_1.jpg" />
+    <Content Include="Images\images - Copy\i6.jpg" />
+    <Content Include="Images\images - Copy\i7.jpg" />
+    <Content Include="Images\images - Copy\i8.jpg" />
+    <Content Include="Images\images - Copy\lpg_portability_scheme_header.jpg" />
+    <Content Include="Images\images - Copy\mobile-wireless-data-internet-services.jpg" />
+    <Content Include="Images\images - Copy\mobile2.jpg" />
+    <Content Include="Images\images - Copy\moving-house.jpg" />
+    <Content Include="Images\images - Copy\SetWidth510-Promak.jpg" />
+    <Content Include="Images\images - Copy\t1larg.grocery.store_.aisle_.jpg" />
+    <Content Include="Images\images\1.jpg" />
+    <Content Include="Images\images\2.jpg" />
+    <Content Include="Images\images\3.jpg" />
+    <Content Include="Images\images\4.jpg" />
+    <Content Include="Images\images\5.jpg" />
+    <Content Include="Images\images\6.jpg" />
+    <Content Include="Images\images\7.jpg" />
+    <Content Include="Images\images\8a.jpg" />
+    <Content Include="Images\images\8b.jpg" />
+    <Content Include="Images\images\8c.jpg" />
+    <Content Include="Images\images\8d.jpg" />
+    <Content Include="Images\images\chainimage-shopping-cart-in-a-grocery-store.jpg" />
+    <Content Include="Images\images\cooking.jpg" />
+    <Content Include="Images\images\download.jpg" />
+    <Content Include="Images\images\gall-img04.jpg" />
+    <Content Include="Images\images\i1.jpg" />
+    <Content Include="Images\images\i2.jpg" />
+    <Content Include="Images\images\i3.jpg" />
+    <Content Include="Images\images\i4.jpg" />
+    <Content Include="Images\images\i4l.jpg" />
+    <Content Include="Images\images\i5.jpg" />
+    <Content Include="Images\images\i5_1.jpg" />
+    <Content Include="Images\images\i6.jpg" />
+    <Content Include="Images\images\i7.jpg" />
+    <Content Include="Images\images\i8.jpg" />
+    <Content Include="Images\images\lpg_portability_scheme_header.jpg" />
+    <Content Include="Images\images\mobile-wireless-data-internet-services.jpg" />
+    <Content Include="Images\images\mobile2.jpg" />
+    <Content Include="Images\images\moving-house.jpg" />
+    <Content Include="Images\images\SetWidth510-Promak.jpg" />
+    <Content Include="Images\images\t1larg.grocery.store_.aisle_.jpg" />
+    <Content Include="Images\loading.gif" />
+    <Content Include="Images\logo%281%29.png" />
+    <Content Include="Images\logo.png" />
+    <Content Include="Images\pic3.jpg" />
+    <Content Include="Images\pic4.jpg" />
+    <Content Include="Images\pic5.jpg" />
+    <Content Include="Images\pic6.jpg" />
+    <Content Include="Images\pic7.jpg" />
+    <Content Include="Images\pic8.jpg" />
+    <Content Include="Images\t1.jpg" />
+    <Content Include="Images\t2.jpg" />
+    <Content Include="Images\t3.jpg" />
+    <Content Include="Images\t4.jpg" />
+    <Content Include="Images\t5.jpg" />
+    <Content Include="Images\testi\1.jpg" />
+    <Content Include="Images\testi\2.jpg" />
+    <Content Include="Images\testi\3.jpg" />
+    <Content Include="Images\testi\a.jpg" />
+    <Content Include="Images\testi\b.jpg" />
+    <Content Include="Images\testi\c.jpg" />
+    <Content Include="Images\u.jpg" />
+    <Content Include="img\a12.png" />
+    <Content Include="img\b05.png" />
+    <Content Include="img\loading.gif" />
+    <Content Include="img\slide1.png" />
+    <Content Include="img\slide2.jpg" />
+    <Content Include="img\slide3.jpg" />
+    <Content Include="js_Login1\bootstrap-datepicker.js" />
+    <Content Include="js_Login1\index.js" />
+    <Content Include="js_Login1\prefixfree.min.js" />
+    <Content Include="MailTemplates\MailRegistration.html" />
+    <Content Include="MailTemplates\MailUserQuery.html" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="js_Login1\js" />
+    <None Include="Properties\PublishProfiles\Finc.pubxml" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\google-analytics.min.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery1.8.2.min.js" />
+    <Content Include="Scripts\jssor.slider-21.1.5.min.js" />
+    <Content Include="Scripts\JS\behavior.js" />
+    <Content Include="Scripts\JS\bootstrap.min.js" />
+    <Content Include="Scripts\JS\ga.js" />
+    <Content Include="Scripts\JS\jquery.knob.js" />
+    <Content Include="Scripts\JS\jquery.min.js" />
+    <Content Include="Scripts\JS\jquery.nav.js" />
+    <Content Include="Scripts\JS\jquery.vegas.min.js" />
+    <Content Include="Scripts\JS\materialize.min.js" />
+    <Content Include="Scripts\JS\owl.carousel.min.js" />
+    <Content Include="Scripts\JS\plugins.min.js" />
+    <Content Include="Scripts\JS\smoothscroll.js" />
+    <Content Include="Scripts\JS\wow.min.js" />
+    <Content Include="Scripts\JS\zerif.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\Payment\classie.js" />
+    <Content Include="Service References\FincService\Finc24.FincService.customer.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\FincService\Finc24.FincService.cook.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\FincService\Finc24.FincService.restaurant.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\FincService\Finc24.FincService.customer_service.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\FincService\Finc24.FincService.accommodation.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\FincService\Finc24.FincService.laundry.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\FincService\Finc24.FincService.lpg.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\FincService\Finc24.FincService.market.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\FincService\Finc24.FincService.packer.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\FincService\Finc24.FincService.internet.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\FincService\Finc24.FincService.salon.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Service References\FincService\Service1.disco" />
+    <None Include="Service References\FincService\configuration91.svcinfo" />
+    <None Include="Service References\FincService\configuration.svcinfo" />
+    <None Include="Service References\FincService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="Service References\ServiceReference1\Finc24.ServiceReference1.accommodation.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\ServiceReference1\Finc24.ServiceReference1.cook.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\ServiceReference1\Finc24.ServiceReference1.customer.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\ServiceReference1\Finc24.ServiceReference1.customer_service.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\ServiceReference1\Finc24.ServiceReference1.internet.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\ServiceReference1\Finc24.ServiceReference1.laundry.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\ServiceReference1\Finc24.ServiceReference1.lpg.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\ServiceReference1\Finc24.ServiceReference1.market.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\ServiceReference1\Finc24.ServiceReference1.packer.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\ServiceReference1\Finc24.ServiceReference1.restaurant.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\ServiceReference1\Finc24.ServiceReference1.salon.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Service References\ServiceReference1\Service1.disco" />
+    <None Include="Service References\ServiceReference1\configuration91.svcinfo" />
+    <None Include="Service References\ServiceReference1\configuration.svcinfo" />
+    <None Include="Service References\ServiceReference1\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\FincService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\ServiceReference1\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\web.config" />
+    <Content Include="packages.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <None Include="Service References\FincService\Service1.wsdl" />
+    <None Include="Service References\FincService\Service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\FincService\Service11.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Views\Shared\_Layout_DashBoard.cshtml" />
+    <None Include="Service References\FincService\Service12.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Views\Home\Registration - Copy.cshtml" />
+    <Content Include="Views\Home\Test.cshtml" />
+    <Content Include="Views\Admin\Cook.cshtml" />
+    <Content Include="Views\Admin\LPG.cshtml" />
+    <Content Include="Views\Admin\Market.cshtml" />
+    <Content Include="Views\Admin\Restaurant.cshtml" />
+    <Content Include="Views\Admin\Packers.cshtml" />
+    <Content Include="Views\Admin\Laundry.cshtml" />
+    <Content Include="Views\Admin\Accommodation.cshtml" />
+    <Content Include="Views\Home\AboutBengaluru.cshtml" />
+    <Content Include="Views\Admin\CustomerList.cshtml" />
+    <Content Include="Views\Admin\CustomerDetails.cshtml" />
+    <None Include="Service References\ServiceReference1\Service1.wsdl" />
+    <None Include="Service References\ServiceReference1\Service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReference1\Service11.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReference1\Service12.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Views\Home\DashBoardAnimation.cshtml" />
+    <Content Include="Views\Home\DashBoard.cshtml" />
+    <Content Include="Views\Home\Tester.cshtml" />
+    <Content Include="Views\Home\Registration.cshtml" />
+    <Content Include="Views\Admin\Internet.cshtml" />
+    <Content Include="Views\Admin\Salon.cshtml" />
+    <Content Include="Views\Admin\Payment.cshtml" />
+    <Content Include="Views\Admin\RequestHandler.cshtml" />
+    <Content Include="Views\Home\RequestHandler.cshtml" />
+    <Content Include="Views\Home\ResponseHandler.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\FincService\" />
+    <WCFMetadataStorage Include="Service References\ServiceReference1\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>1371</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:1371/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

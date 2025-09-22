@@ -1,0 +1,573 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title -Finc - Friend In The City</title>
+    @*<title>Finc - @ViewBag.Title</title>*@
+
+    <!-- =========================
+         STYLESHEETS
+    ============================== -->
+    <link href="~/Content/Styles/animate.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Content/Styles/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/Styles/jquery.vegas.min.css">
+    <link rel="stylesheet" href="~/Content/Styles/animate.min.css">
+    <link rel="stylesheet" href="~/Content/Styles/styles.css">
+    <link rel="stylesheet" href="~/Content/Styles/pixeden-icons.css">
+    <!-- CUSTOM STYLES -->
+    <link rel="stylesheet" href="~/Content/Styles/styles(1).css">
+    <link rel="stylesheet" href="~/Content/Styles/responsive.css">
+    <!-- WEBFONT -->
+    <link href="~/Content/Styles/css" rel="stylesheet" type="text/css">
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+
+    <style>
+        .login {
+            position: absolute;
+            top: 50%;
+            /* top: 470%; */
+            left: 40%;
+            margin: 0 0 0 -10rem;
+            width: 32rem;
+            height: 20rem;
+            padding: 20px;
+            background: #fff;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+            .login:hover > .login-header, .login.focused > .login-header {
+                width: 2rem;
+            }
+
+                .login:hover > .login-header > .text, .login.focused > .login-header > .text {
+                    font-size: 1rem;
+                    transform: rotate(-90deg);
+                }
+
+            .login.loading > .login-header {
+                width: 20rem;
+            }
+
+                .login.loading > .login-header > .text {
+                    display: none;
+                }
+
+                .login.loading > .login-header > .loader {
+                    display: block;
+                }
+
+        .login-header {
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 1;
+            width: 20rem;
+            height: 20rem;
+            background: #2bca86;
+            transition: width 0.5s ease-in-out;
+        }
+
+            .login-header > .text {
+                display: block;
+                width: 100%;
+                height: 100%;
+                font-size: 5rem;
+                text-align: center;
+                line-height: 20rem;
+                color: #fff;
+                transition: all 0.5s ease-in-out;
+            }
+
+            .login-header > .loader {
+                display: none;
+                position: absolute;
+                left: 5rem;
+                top: 5rem;
+                width: 10rem;
+                height: 10rem;
+                border: 2px solid #fff;
+                border-radius: 50%;
+                animation: loading 2s linear infinite;
+            }
+
+                .login-header > .loader:after {
+                    content: "";
+                    position: absolute;
+                    left: 4.5rem;
+                    top: -0.5rem;
+                    width: 1rem;
+                    height: 1rem;
+                    background: #fff;
+                    border-radius: 50%;
+                    border-right: 2px solid orange;
+                }
+
+                .login-header > .loader:before {
+                    content: "";
+                    position: absolute;
+                    left: 4rem;
+                    top: -0.5rem;
+                    width: 0;
+                    height: 0;
+                    border-right: 1rem solid #fff;
+                    border-top: 0.5rem solid transparent;
+                    border-bottom: 0.5rem solid transparent;
+                }
+
+
+        .login-form {
+            margin: 0 0 0 2rem;
+            padding: 0.5rem;
+        }
+
+        .login-input {
+            display: block;
+            width: 100%;
+            font-size: 2rem;
+            padding: 0.5rem 1rem;
+            box-shadow: none;
+            border-color: #ccc;
+            border-width: 0 0 2px 0;
+        }
+
+            .login-input + .login-input {
+                margin: 10px 0 0;
+            }
+
+            .login-input:focus {
+                outline: none;
+                border-bottom-color: orange;
+            }
+
+        .login-btn {
+            position: absolute;
+            right: 1rem;
+            bottom: 1rem;
+            width: 5rem;
+            height: 5rem;
+            border: none;
+            background: orange;
+            border-radius: 50%;
+            font-size: 0;
+            border: 0.6rem solid transparent;
+            transition: all 0.3s ease-in-out;
+        }
+
+            .login-btn:after {
+                content: "";
+                position: absolute;
+                left: 1rem;
+                top: 0.8rem;
+                width: 0;
+                height: 0;
+                border-left: 2.4rem solid #fff;
+                border-top: 1.2rem solid transparent;
+                border-bottom: 1.2rem solid transparent;
+                transition: border 0.3s ease-in-out 0s;
+            }
+
+            .login-btn:hover, .login-btn:focus, .login-btn:active {
+                background: #fff;
+                border-color: orange;
+                outline: none;
+            }
+
+                .login-btn:hover:after, .login-btn:focus:after, .login-btn:active:after {
+                    border-left-color: orange;
+                }
+    </style>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.headerTabs').click(function () {
+                $('#back-button').click();
+            });
+            $('html, body').animate({
+                scrollTop: 0
+            }, 100)
+            $('.modal-footer button').click(function () {
+                var button = $(this);
+
+                if (button.attr("data-dismiss") != "modal") {
+                    var inputs = $('form input');
+                    var title = $('.modal-title');
+                    var progress = $('.progress');
+                    var progressBar = $('.progress-bar');
+
+                    inputs.attr("disabled", "disabled");
+                    button.hide();
+                    progress.show();
+                    progressBar.animate({ width: "100%" }, 100);
+                    progress.delay(1000)
+                    .fadeOut(600);
+                    button.text("Close")
+                    .removeClass("btn-primary")
+                    .addClass("btn-success")
+                    .blur()
+                    .delay(1600)
+                    .fadeIn(function () {
+                        title.text("Log in is successful");
+                        button.attr("data-dismiss", "modal");
+                    });
+                }
+            });
+
+
+        });
+
+    </script>
+    <script src="~/js_Login1/prefixfree.min.js"></script>
+
+</head>
+<body>
+    <img class="vegas-background" src="~/Images/bg2.jpg" style="position: fixed; left: 0px;
+        top: -167px; /*width: 1366px;*/width: 100%; height: 911px; bottom: auto; right: auto;">
+    <!-- =========================
+       PRE LOADER
+    ============================== -->
+    @*<div class="preloader" style="display: none;">
+            <div class="status" style="display: none;">
+                &nbsp;
+            </div>
+        </div>*@
+
+    <!-- =========================
+       HOME SECTION
+    ============================== -->
+    @*<header id="home" class="header">*@
+
+    <!-- TOP BAR -->
+    <div id="main-nav" class="navbar navbar-inverse bs-docs-nav fixed" role="banner">
+        <div class="container">
+            <div class="navbar-header responsive-logo">
+                <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#bs-navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="navbar-brand">
+                    <a href="http://www.gofinc.com/#home">
+
+                        <img src="~/Images/finclogo.png" alt="FINC" style="height: 80px;margin-top: -30px;">
+                    </a>
+                </div>
+            </div>
+            <nav class="navbar-collapse collapse" role="navigation" id="bs-navbar-collapse">
+                <ul class="nav navbar-nav navbar-right responsive-nav main-nav-list">
+                    @*<li class="current"><a href="http://templateocean.com/wrapbootstrap/zerif-html/v1.3.1/#home">Home</a></li>*@
+                    <li class="current"><a class="headerTabs" href="http://www.gofinc.com/#home">Home</a></li>
+                    <li class=""><a class="headerTabs" href="http://www.gofinc.com/#focus">Our Focus</a></li>
+                    <li class=""><a class="headerTabs" href="http://www.gofinc.com/#works">Services</a></li>
+
+                    <li class=""><a class="headerTabs" href="http://www.gofinc.com/#pricingtable">Packages</a></li>
+                    <li class=""><a class="headerTabs" href="http://www.gofinc.com/#features">Features</a></li>
+                    <!--<li class=""><a href="http://www.gofinc.com/#products">Products</a></li>-->
+                    @*<li class=""><a href="http://www.gofinc.com/#team">Team</a></li>
+                        <li class=""><a href="http://www.gofinc.com/#aboutus">About Us</a></li>*@
+
+                    <li class=""><a class="headerTabs" href="http://www.gofinc.com/#testimonials">Reviews</a></li>
+                    <li class=""><a class="headerTabs" href="http://www.gofinc.com/#contact">Contact Us</a></li>
+                    <li class=""><a class="headerTabs" href="http://www.gofinc.com/#contact"></a></li>
+
+                    @*<li class=""><a href="">Login</a></li>*@
+                    @if (Session["userlogin"] == null)
+                    {
+                        <li>
+                            <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                                Log in
+                            </button>
+                            <p style="font-size: 10px;">
+                                New customer? @Html.ActionLink("Register Now", "Registration", "Home", null, new { style = "font-size: 11px;" })
+
+                            </p>
+                        </li>
+                    }
+                    else
+                    {
+                        <li>
+                            <button class="btn btn-primary" onclick="location.href='@Url.Action("Logout", "Home")'">
+                                Log Out
+                            </button>
+                            <p style="font-size: 10px;">
+                                @*New customer? @Html.ActionLink("Register Now", "Registration", "Home", new { style = "font-size: 11px;" })*@
+                                Hello @Session["userlogin"]!!
+                            </p>
+                        </li>
+                    }
+
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <!-- / END TOP BAR -->
+    <!-- BIG HEADING WITH CALL TO ACTION BUTTONS AND SHORT MESSAGES -->
+    @*<div class="container">
+
+            <!-- HEADING -->
+            <h1 class="intro">Affordable Quality services for Small Businesses</h1>
+
+            <!-- CALL TO ACTION BUTTONS -->
+            <div class="buttons inpage-scroll">
+                <a href="http://templateocean.com/wrapbootstrap/zerif-html/v1.3.1/#works" class="btn btn-primary custom-button red-btn">Our Services</a>
+                <a href="http://templateocean.com/wrapbootstrap/zerif-html/v1.3.1/#pricingtable" class="btn btn-primary custom-button green-btn">Our Packages</a>
+            </div>
+
+            <!-- 3 SHORT MESSAGE ABOUT COMPANY -->
+            <div class="row bottom-message-section">
+                <div class="col-lg-4 col-sm-4">
+                    <div class="short-text">
+                        <i class="icon icon-fontawesome-webfont-358"></i> Fixed price for packages
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-4">
+                    <div class="short-text">
+                        <i class="icon-fontawesome-webfont-286"></i> Quality product in time
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-4">
+                    <div class="short-text">
+                        <i class="icon-fontawesome-webfont-347"></i> Satisfaction guranteed
+                    </div>
+                </div>
+            </div>
+        </div>*@ <!-- / END BIG HEADING WITH CALL TO ACTION BUTTONS AND SHORT MESSAGES  -->
+    @*</header>*@
+    <!-- / END HOME SECTION  -->
+    <!-- =========================
+       FOCUS SECTION
+    ============================== -->
+    @*<div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                    </ul>
+                </div>
+            </div>
+        </div>*@
+
+    @*<div class="container body-content">*@
+    @RenderBody()
+    @*<hr />*@
+    <footer>
+        <p>Copyright &copy; @DateTime.Now.Year - Finc</p>
+    </footer>
+    @*</div>*@
+
+    @*<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+        <script src="~/Scripts/bootstrap.min.js"></script>*@
+
+
+    <!-- SCRIPTS -->
+    <script src="~/Scripts/JS/bootstrap.min.js"></script>
+    <script src="~/Scripts/JS/wow.min.js"></script>
+    <script src="~/Scripts/JS/jquery.nav.js"></script>
+    <script src="~/Scripts/JS/jquery.knob.js"></script>
+    <script src="~/Scripts/JS/owl.carousel.min.js"></script>
+    <script src="~/Scripts/JS/smoothscroll.js"></script>
+    <script src="~/Scripts/JS/jquery.vegas.min.js"></script>
+    <script src="~/Scripts/JS/zerif.js"></script>
+
+
+
+    <script src="~/js_Login1/index.js"></script>
+    @using (Html.BeginForm("Login", "Home", FormMethod.Post, new { style = "background: white;box-shadow: 1px 2px 13px 0 rgba(29,29,29,.12);" }))
+    {
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    @*<div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h4 class="modal-title" id="myModalLabel">Log in</h4>
+                        </div> <!-- /.modal-header -->*@
+
+                    @*<div class="modal-body">*@
+                    <div class="login">
+                        <header class=" login-header">
+
+                            <span class="text">LOGIN</span><span class="loader"></span>
+                        </header>
+                        <form class="login-form">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            @*<input type="text" placeholder="Username" id="userName" class="login-input" />
+                                <input type="password" placeholder="Password" id="password" class="login-input" />*@
+                            <input id="emailId" class="login-input" name="UserName" type="text" placeholder="Enter your Login Id" maxlength="50">
+                            <span class="lblError" id="lblEmail" style="color: Red;font-size: 12px;float:right;">Please enter your e-mailid</span>
+                            <span class="lblError" id="lblInvalidEmail" style="color: Red;font-size: 12px;float:right;">Please enter valid e-mailid</span>
+
+                            <input type="password" name="Password" id="password" placeholder="Enter your Password" class="login-input" maxlength="10" />
+                            <span class="lblError" id="lblPassword" style="color: Red;font-size: 12px;float:right;">Please enter your password</span>
+                            <center><div id="result"></div></center>
+                            <button type="submit" class="login-btn">login</button>
+                        </form>
+                    </div>
+
+
+                    @*<form role="form">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="uLogin" placeholder="Login">
+                                    <label for="uLogin" class="input-group-addon glyphicon glyphicon-user"></label>
+                                </div>
+                            </div> <!-- /.form-group -->
+
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <input type="password" class="form-control" id="uPassword" placeholder="Password">
+                                    <label for="uPassword" class="input-group-addon glyphicon glyphicon-lock"></label>
+                                </div> <!-- /.input-group -->
+                            </div> <!-- /.form-group -->
+
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox"> Remember me
+                                </label>
+                            </div> <!-- /.checkbox -->
+                        </form>*@
+
+                    @*</div>*@ <!-- /.modal-body -->
+                    @*<div class="modal-footer">
+                            <button class="form-control btn btn-primary">Ok</button>
+
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="100" style="width: 0%;">
+                                    <span class="sr-only">progress</span>
+                                </div>
+                            </div>
+                        </div>*@ <!-- /.modal-footer -->
+
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+    }
+
+
+    <div class="modal fade" id="myModalPopUp" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+
+                <div class="modal-body">
+                    <p>Your Email-Id is not registered in our Database. <a href="/Home/Registration" style="font-size: 11px;">Register Now</a></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".lblError").hide();
+            $('.login-btn').click(function () {
+
+                if ($.trim($('#emailId').val()) == '') {
+                    $(".lblError").hide();
+                    $('#lblEmail').show();
+                    $("#emailId").focus();
+                    return false;
+                }
+                if ($.trim($('#emailId').val()) != '') {
+                    if (!ValidateEmail($("#emailId").val())) {
+                        $(".lblError").hide();
+                        $('#lblInvalidEmail').show();
+                        $("#emailId").focus();
+                        return false;
+                    }
+
+                }
+                if (($.trim($('#password').val())) == '') {
+                    alert(9);
+                    $('.lblError').hide();
+                    $('#lblPassword').show();
+                    $('#password').focus();
+                    return false;
+                }
+            });
+            function ValidateEmail(email) {
+                var expr = /^([\w-\.]+)@@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+                return expr.test(email);
+            };
+            $('.current').click(function () {
+                $('html, body').animate({
+                    scrollTop: 0
+                }, 100)
+            });
+            $('.login-btn').css('cursor', 'hand');
+            //$('.login-btn').click(function () {
+            //    //$.post( $("#updateunit").attr("action"),
+            //    // $("#updateunit :input").serializeArray(),function(info){
+            //    $("#result").html('<div class="alert alert-success"><button type="button" class="close">×</button>Successfully updated record!</div>');
+            //    window.setTimeout(function () {
+            //        $(".alert").fadeTo(500, 0).slideUp(500, function () {
+            //            $(this).remove();
+            //        });
+            //    }, 8000);
+            //    $('.alert .close').on("click", function (e) {
+            //        $(this).parent().fadeTo(500, 0).slideUp(500);
+            //    });
+            //    //});
+            //});
+        });
+    </script>
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var serviceURL = '/Home/CheckMailSubscription';
+
+            $('.login-btn').click(function () {
+
+                var loginId = $('#emailId').val();
+                var password = $('#password').val();
+                var trueorfalse;
+                var data = JSON.stringify({
+                    'userName': loginId,
+                    'password': password
+                });
+
+                //alert(data);
+                $.ajax({
+                    type: "POST",
+                    url: '/Home/CheckMailSubscription',
+                    data: data,
+                    success: function (response) {
+                        // alert(response)
+                        if (response == 0) {
+                            trueorfalse = false;
+                            //  e.preventDefault();
+                            // $('#myModal').modal({show:false});
+                            $("#myModalPopUp").modal();
+                            alert("Email id not subscribed.");
+                            // return false;
+                            //$("#result").html('<div class="alert alert-success"><button type="button" class="close">×</button>Successfully updated record!</div>');
+                        }
+                        else
+                            trueorfalse = true;
+                    },
+                    error: function (response) { alert("Oops! Error occured") },
+                    contentType: 'application/json'
+                });
+
+            });
+        });
+    </script>
+
+</body>
+</html>

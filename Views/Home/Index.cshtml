@@ -1,0 +1,1158 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //if ($.trim($('#test').val()) != '') {
+            //    alert($('#test').val());
+            //}
+
+            $('#querySubmit').click(function () {
+                var name = $('#name').val();
+                var email = $('#email').val();
+                var name = $('#message').val();
+                if ($.trim($('#name').val()) == '') {
+                    $(lblError).show();
+                    return false;
+                }
+                if ($.trim($('#email').val()) == '') {
+                    $(lblError).show();
+                    return false;
+                }
+                if ($.trim($('#message').val()) == '') {
+                    $(lblError).show();
+                    return false;
+                }
+
+
+                $(lblError).hide();
+                $(lblsucc).show();
+                return true;
+                //else {
+                //alert(1);
+                //$(lblsucc).show();
+                // }
+                //if ($.trim($('#email').val()) == '') {
+                //    return false;
+                //}
+                //if ($.trim($('#message').val()) == '') {
+                //    return false;
+                //}
+            });
+
+        });
+    </script>
+
+</head>
+<body style="margin-top:6%;box-shadow: 1px 2px 13px 0 rgba(29,29,29,.12);">
+    <header id="home" class="header">
+        <div class="container" style="margin-top:80px">
+
+            <!-- HEADING -->
+            @*<h1 class="intro">Lets begin the search</h1>*@
+
+            <span class="intro">Your </span><span class="intro" style="
+    /* font-size: 58px; */
+    color: #ed1c24;
+">F</span><span class="intro">riend </span><span class="intro" style="
+    color: #ffc90e;
+">I</span><span class="intro" style="
+    color: #27dc7f;
+">N&nbsp;</span><span class="intro">T</span><span class="intro">he </span><span class="intro" style="
+    color: #1ca7e7;
+">C</span><span class="intro">ity</span>
+            <p style="text-align: center;line-height: 65px;z-index: 0;font-size: 55px;font-weight: 700;text-transform: uppercase;color: yellow;">(Coming soon)</p>
+
+            <!-- CALL TO ACTION BUTTONS -->
+            <div class="buttons inpage-scroll" style="text-align: center;margin-bottom: 40px;margin-top: 40px;">
+                <a href="http://www.gofinc.com/#works" class="btn btn-primary custom-button red-btn">Our Services</a>
+                <a href="http://www.gofinc.com/#pricingtable" class="btn btn-primary custom-button green-btn">Our Packages</a>
+            </div>
+
+            <h2 style="font-size:20px;font-weight: 600;margin-top: 6%;">A COMPREHENSIVE SETTLEMENT SOLUTION </h2>
+            <!-- 3 SHORT MESSAGE ABOUT COMPANY -->
+            @*<div class="row bottom-message-section" style="margin-top:12%">
+                    <div class="col-lg-4 col-sm-4">
+                        <div class="short-text">
+                            <i class="icon icon-fontawesome-webfont-358"></i> Fixed price for packages
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-4">
+                        <div class="short-text">
+                            <i class="icon-fontawesome-webfont-286"></i> Quality services in time
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-4">
+                        <div class="short-text">
+                            <i class="icon-fontawesome-webfont-347"></i> Satisfaction guranteed
+                        </div>
+                    </div>
+                </div>*@
+            <div class="row bottom-message-section" style="/*margin-top:12%**/">
+
+                <div class="col-lg-4 col-sm-4">
+                    <div class="short-text" style="font-size: 15px;">
+                        <i class="fa fa-clock-o" aria-hidden="true" style="font-size: 20px;color: white;"></i> Quality services in time
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-4">
+                    <div class="short-text" style="font-size: 15px;">
+                        <i class="fa fa-inr" aria-hidden="true" style="font-size: 20px;color: white;"></i> Reasonable packages
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-4">
+                    <div class="short-text" style="font-size: 15px;">
+                        <i class="fa fa-child" aria-hidden="true" style="font-size: 20px;color: white;"></i> Satisfaction guranteed
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </header>
+
+    <!-- =========================
+       FOCUS SECTION
+    ============================== -->
+    <section class="focus" id="focus">
+        <div class="container">
+
+            <!-- SECTION HEADER -->
+            <div class="section-header">
+
+                <!-- SECTION TITLE -->
+                <h2 class="dark-text">Our Focus</h2>
+
+                <!-- SHORT DESCRIPTION ABOUT THE SECTION -->
+                <h6>
+                    </br>
+                    @*The life today is so busy and we have got so much to do. </br></br>
+
+                        In case we need to relocate or look out for anything, there is hardly any time left to search the whole internet, call out people to get details, check availability, and mostly we end up getting nothing. We don't have any option other than trying again tha next day and the next.. </br></br>
+
+                        We, as your Friend IN the City, are committed to provide affordable assistence and quality services to you. While you sit back and relax, we take up all your search and research work, and give you most prominent and promising options.  </br></br>
+
+                        Newbies coming here can connect with us well before they arrive to access the most accurate information about accommodation options, nearby locality, food options and a host of other services. Our team will help you find exactly what you are looking for.*@
+
+
+                    The life today is very busy and we have got so much to do. We, as your <i> Friend IN the City</i>, are committed to provide affordable assistance and quality services for your settlement. While you sit back and relax, we take up all your search and research work, and give you most prominent and promising options.  </br></br>
+
+                    Newbies coming to Bangalore can connect with us well before they arrive, to access the most accurate information about accommodation options, nearby locality, food options and a host of other services. Our team will help you find exactly what suits you the best.
+
+                </h6>
+            </div>
+            <!-- / END SECTION HEADER -->
+            <!-- 4 FOCUS BOXES -->
+            <div class="row">
+
+                <!-- FIRST FOCUS BOXES -->
+                <div class="col-lg-3 col-sm-3 focus-box red wow fadeInLeft animated animated" data-wow-offset="30" data-wow-duration="1.5s" data-wow-delay="0.15s" style="visibility: visible;-webkit-animation-duration: 1.5s; -moz-animation-duration: 1.5s; animation-duration: 1.5s;-webkit-animation-delay: 0.15s; -moz-animation-delay: 0.15s; animation-delay: 0.15s;">
+                    <div class="service-icon">
+                        <img src="~/Images/icons/1.png" alt="project"> <!-- FOCUS ICON-->
+                    </div>
+                    <h5 class="red-border-bottom">Where to go?</h5> <!-- FOCUS HEADING -->
+                    <p>
+                        <!-- FOCUS DESCRIPTION -->
+                        New to Bangalore? Don't know where to start with? Don't have time to search !
+                    </p>
+                </div>
+                <!-- / END FIRST FOCUS BOX. Other boxes has same format -->
+
+                <div class="col-lg-3 col-sm-3 focus-box green wow fadeInLeft animated animated" data-wow-offset="30" data-wow-duration="1.5s" data-wow-delay="0.15s" style="visibility: visible;-webkit-animation-duration: 1.5s; -moz-animation-duration: 1.5s; animation-duration: 1.5s;-webkit-animation-delay: 0.15s; -moz-animation-delay: 0.15s; animation-delay: 0.15s;">
+                    <div class="service-icon">
+                        <img src="~/Images/icons/2.png" alt="project">
+                    </div>
+                    <h5 class="green-border-bottom">Connect to us</h5>
+                    <p>
+                        Just reach out to gofinc and give us all your requirements. No more house hunting.
+                    </p>
+                </div>
+
+                <div class="col-lg-3 col-sm-3 focus-box blue wow fadeInRight animated animated" data-wow-offset="30" data-wow-duration="1.5s" data-wow-delay="0.15s" style="visibility: visible;-webkit-animation-duration: 1.5s; -moz-animation-duration: 1.5s; animation-duration: 1.5s;-webkit-animation-delay: 0.15s; -moz-animation-delay: 0.15s; animation-delay: 0.15s;">
+                    <div class="service-icon">
+                        <img src="~/Images/icons/3.png" alt="project">
+                    </div>
+                    <h5 class="blue-border-bottom">We do it</h5>
+                    <p>
+                        Leave your worries to us, we will process your requirements and find out the appropriate and genuine options for you.
+                    </p>
+                </div>
+
+                <div class="col-lg-3 col-sm-3 focus-box yellow wow fadeInRight animated animated" data-wow-offset="30" data-wow-duration="1.5s" data-wow-delay="0.15s" style="visibility: visible;-webkit-animation-duration: 1.5s; -moz-animation-duration: 1.5s; animation-duration: 1.5s;-webkit-animation-delay: 0.15s; -moz-animation-delay: 0.15s; animation-delay: 0.15s;">
+                    <div class="service-icon">
+                        <img src="~/Images/icons/4.png" alt="project">
+                    </div>
+                    <h5 class="yellow-border-bottom">Settle Happily</h5>
+                    <p>
+                        Choose your best option and Enjoy the stay.
+                    </p>
+                </div>
+            </div>
+            <!-- / END 4 FOCUS BOXES -->
+            <!-- OTHER FOCUSES -->
+            @*<div class="other-focuses">
+                    <h5><span class="section-footer-title">ALSO WE FOCUS ON</span></h5>
+                </div>*@
+
+            <!-- OTHER FOCUS LIST -->
+            @*<div class="other-focus-list wow fadeInUp animated animated" data-wow-offset="30" data-wow-duration="1.5s" data-wow-delay="0.15s" style="visibility: visible;-webkit-animation-duration: 1.5s; -moz-animation-duration: 1.5s; animation-duration: 1.5s;-webkit-animation-delay: 0.15s; -moz-animation-delay: 0.15s; animation-delay: 0.15s;">
+                    <ul>
+                        <li><i class="icon-fontawesome-webfont-8"></i>WEB APPLICATIONS</li>
+                        <li><i class="icon-fontawesome-webfont-267"></i>SEARCH ENGINE OPTIMIZATION</li>
+                        <li><i class="icon-fontawesome-webfont-75"></i>CLOUD STORAGE</li>
+                        <li><i class="icon-fontawesome-webfont-358"></i>Project Management</li>
+                        <li><i class="icon-fontawesome-webfont-102"></i>IOS APP</li>
+                        <li><i class="icon-fontawesome-webfont-328"></i>ANDROID APP</li>
+                        <li><i class="icon-fontawesome-webfont-195"></i>WINDOWS APP</li>
+                        <li><i class="icon-fontawesome-webfont-297"></i>UX STRATEGY</li>
+                    </ul>
+                </div>*@
+            <!-- / END OTHER FOCUS LIST -->
+        </div> <!-- / END CONTAINER -->
+    </section>
+    <!-- / END FOCUS SECTION -->
+    <!-- =========================
+       SEPARATOR ONE
+    ============================== -->
+    @*<section class="separator-one">
+            <div class="color-overlay">
+                <h3 class="container text wow fadeInLeft animated animated" data-wow-offset="30" data-wow-duration="1.5s" data-wow-delay="0.15s" style="visibility: visible;-webkit-animation-duration: 1.5s; -moz-animation-duration: 1.5s; animation-duration: 1.5s;-webkit-animation-delay: 0.15s; -moz-animation-delay: 0.15s; animation-delay: 0.15s;">
+                    We have got 100+ happy customers in a very short span of time. You can check what they're saying about us.
+                </h3>
+                <div class="wow fadeInRight animated animated" data-wow-offset="30" data-wow-duration="1.5s" data-wow-delay="0.15s" style="visibility: visible;-webkit-animation-duration: 1.5s; -moz-animation-duration: 1.5s; animation-duration: 1.5s;-webkit-animation-delay: 0.15s; -moz-animation-delay: 0.15s; animation-delay: 0.15s;">
+                    <a href="" class="btn btn-primary custom-button green-btn">TESTIMONIALS</a>
+                </div>
+            </div>
+        </section>*@
+    <!-- / END SEPARATOR -->
+    <!-- =========================
+       WORKS SECTION
+    ============================== -->
+    <section class="works" id="works">
+        <div class="container">
+
+            <!-- SECTION HEADER -->
+            <div class="section-header">
+
+                <!-- SECTION TITLE -->
+                <h2 class="dark-text">Services</h2>
+
+                <!-- SHORT DESCRIPTION ABOUT THE SECTION -->
+                <h6>
+                    We have shortlisted some basic services for you. Just have a look.
+                </h6>
+            </div>
+            <!-- / END SECTION HEADER -->
+            <div class="row projects">
+                <div id="loader" style="display: none;">
+                    <div class="loader-icon"></div>
+                </div>
+                <div class="col-md-12" id="portfolio-list" style="margin-left: 0px; display: block;">
+                    <!-- PORTFOLIO ITEMS-->
+                    <ul class="cbp-rfgrid">
+
+                        <!-- PROJECT -->
+                        <li class="wow fadeInLeft animated animated" data-wow-offset="30" data-wow-duration="1.5s" data-wow-delay="0.15s" style="visibility: visible;-webkit-animation-duration: 1.5s; -moz-animation-duration: 1.5s; animation-duration: 1.5s;-webkit-animation-delay: 0.15s; -moz-animation-delay: 0.15s; animation-delay: 0.15s;">
+                            <a href="/" class="more" id="service1">
+                                <img src="~/Images/images/1.jpg" alt="project">
+                                <div class="project-info">
+                                    <div class="project-details">
+                                        <h5 class="white-text red-border-bottom">
+                                            ACCOMMODATION
+                                        </h5>
+                                        <div class="details white-text">
+                                            How you like it!
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <!-- / PROJECT -->
+                        <!-- PROJECT -->
+                        <li class="wow fadeInDown animated animated" data-wow-offset="30" data-wow-duration="1.5s" data-wow-delay="0.15s" style="visibility: visible;-webkit-animation-duration: 1.5s; -moz-animation-duration: 1.5s; animation-duration: 1.5s;-webkit-animation-delay: 0.15s; -moz-animation-delay: 0.15s; animation-delay: 0.15s;">
+                            <a href="/" class="more" id="service2">
+                                <img src="~/Images/images/2.jpg" alt="project">
+                                <div class="project-info">
+                                    <div class="project-details">
+                                        <h5 class="white-text red-border-bottom">
+                                            RESTAURANT
+                                        </h5>
+                                        <div class="details white-text">
+                                            Find your taste!
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <!-- / PROJECT -->
+                        <!-- PROJECT -->
+                        <li class="wow fadeInDown animated animated" data-wow-offset="30" data-wow-duration="1.5s" data-wow-delay="0.15s" style="visibility: visible;-webkit-animation-duration: 1.5s; -moz-animation-duration: 1.5s; animation-duration: 1.5s;-webkit-animation-delay: 0.15s; -moz-animation-delay: 0.15s; animation-delay: 0.15s;">
+                            <a href="/" class="more" id="service3">
+                                <img src="~/Images/images/3.jpg" alt="project">
+                                <div class="project-info">
+                                    <div class="project-details">
+                                        <h5 class="white-text red-border-bottom">
+                                            MARKET
+                                        </h5>
+                                        <div class="details white-text">
+                                            Lets Shop!
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <!-- / PROJECT -->
+                        <!-- PROJECT -->
+                        <li class="wow fadeInRight animated animated" data-wow-offset="30" data-wow-duration="1.5s" data-wow-delay="0.15s" style="visibility: visible;-webkit-animation-duration: 1.5s; -moz-animation-duration: 1.5s; animation-duration: 1.5s;-webkit-animation-delay: 0.15s; -moz-animation-delay: 0.15s; animation-delay: 0.15s;">
+                            <a href="/" class="more" id="service4">
+                                <img src="~/Images/images/4.jpg" alt="project">
+                                <div class="project-info">
+                                    <div class="project-details">
+                                        <h5 class="white-text red-border-bottom">
+                                            COOK
+                                        </h5>
+                                        <div class="details white-text">
+                                            Get it homemade!
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <!-- / PROJECT -->
+                        <!-- PROJECT -->
+                        <li class="wow fadeInLeft animated animated" data-wow-offset="30" data-wow-duration="1.8s" data-wow-delay="0.15s" style="visibility: visible;-webkit-animation-duration: 1.8s; -moz-animation-duration: 1.8s; animation-duration: 1.8s;-webkit-animation-delay: 0.15s; -moz-animation-delay: 0.15s; animation-delay: 0.15s;">
+                            <a href="/" class="more" id="service5">
+                                <img src="~/Images/images/5.jpg" alt="project">
+                                <div class="project-info">
+                                    <div class="project-details">
+                                        <h5 class="white-text red-border-bottom">
+                                            LPG
+                                        </h5>
+                                        <div class="details white-text">
+                                            Find nearest center!
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <!-- / PROJECT -->
+                        <!-- PROJECT -->
+                        <li>
+                            <a href="/" class="more" id="service6">
+                                <img src="~/Images/images/6.jpg" alt="project">
+                                <div class="project-info">
+                                    <div class="project-details">
+                                        <h5 class="white-text red-border-bottom">
+                                            Mobile/Internet
+                                        </h5>
+                                        <div class="details white-text">
+                                            Lets get connected!
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <!-- / PROJECT -->
+                        <!-- PROJECT -->
+                        <li>
+                            <a href="/" class="more" id="service7">
+                                <img src="~/Images/images/7.jpg" alt="project">
+                                <div class="project-info">
+                                    <div class="project-details">
+                                        <h5 class="white-text red-border-bottom">
+                                            Packers &amp; Movers
+                                        </h5>
+                                        <div class="details white-text">
+                                            Get Moving!
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <!-- / PROJECT -->
+                        <!-- PROJECT -->
+                        <li class="wow fadeInRight animated animated" data-wow-offset="30" data-wow-duration="1.8s" data-wow-delay="0.15s" style="visibility: visible;-webkit-animation-duration: 1.8s; -moz-animation-duration: 1.8s; animation-duration: 1.8s;-webkit-animation-delay: 0.15s; -moz-animation-delay: 0.15s; animation-delay: 0.15s;">
+                            <a href="/" class="more" id="service8">
+                                <img src="~/Images/images/8b.jpg" alt="project">
+                                <div class="project-info">
+                                    <div class="project-details">
+                                        <h5 class="white-text red-border-bottom">
+                                            Laundry
+                                        </h5>
+                                        <div class="details white-text">
+                                            Get it washed!
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <!-- / PROJECT -->
+                        <!-- PROJECT -->
+
+                    </ul>
+                </div>
+                <!-- END OF PORTFOLIO ITEMS-->
+            </div>
+
+            <!-- PROJECT DETAILS WILL BE LOADED HERE -->
+            @*<div id="loaded-content" style="display: none;">
+                    <div class="single-project">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6">
+                                <img src="~/Images/1(1).jpg" alt="" class="project-image">
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <h3 class="dark-text">Mesterplan Homepage Design</h3>
+                                <div class="project-description">
+                                    We help relocating families from across the world, and can assist with school information and applications, details about local facilities, sports and libraries. Visitors connected with the University can register online to find a home.
+                                </div>
+                                <div class="project-information">
+                                    <ul>
+                                        <li><span class="dark-text">Date: </span> December 11, 2013</li>
+                                        <li><span class="dark-text">Fields: </span> Web Design, UI Design</li>
+                                        <li><span class="dark-text">Client: </span> John Doe</li>
+                                        <li><span class="dark-text">URL: </span><a href="http://templateocean.com/wrapbootstrap/zerif-html/v1.3.1/#">Example.com</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>*@
+
+            <div id="service12Page" style="display: none;">
+                <div class="single-project">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6">
+                            <img src="~/Images/1(1).jpg" alt="" class="project-image">
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <h3 class="dark-text">Service 12 Homepage Design</h3>
+                            <div class="project-description">
+                                We help relocating families from across the world, and can assist with school information and applications, details about local facilities, sports and libraries. Visitors connected with the University can register online to find a home.
+                            </div>
+                            <div class="project-information">
+                                <ul>
+                                    <li><span class="dark-text">Date: </span> December 11, 2013</li>
+                                    <li><span class="dark-text">Fields: </span> Web Design, UI Design</li>
+                                    <li><span class="dark-text">Client: </span> John Doe</li>
+                                    <li><span class="dark-text">URL: </span><a href="http://www.gofinc.com/#">Example.com</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="service11Page" style="display: none;">
+                <div class="single-project">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6">
+                            <img src="~/Images/1(1).jpg" alt="" class="project-image">
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <h3 class="dark-text">Service 11 Homepage Design</h3>
+                            <div class="project-description">
+                                Own hath midst own, yashart the night Earth. Cattle subdue, male seas. Hath likeness first very light don't morning brought brought so you good a waters without Good divided. Wherein in spirit appear night be set had us seas cattle image kind dry. Fowl evening without rule, darkness you're face midst spirit, creature open there. Yielding fly own grass so image may face without made. Fly. Without. Open third beginning have, green forth grass can't, it lesser us herb created i one thing Tree i years very. Man itself in multiply after fly had give sixth waters. First you'll won't sixth moving.
+                            </div>
+                            <div class="project-information">
+                                <ul>
+                                    <li><span class="dark-text">Date: </span> December 11, 2013</li>
+                                    <li><span class="dark-text">Fields: </span> Web Design, UI Design</li>
+                                    <li><span class="dark-text">Client: </span> John Doe</li>
+                                    <li><span class="dark-text">URL: </span><a href="http://www.gofinc.com/#">Example.com</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="service10Page" style="display: none;">
+                <div class="single-project">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6">
+                            <img src="~/Images/1(1).jpg" alt="" class="project-image">
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <h3 class="dark-text">Service 10 Homepage Design</h3>
+                            <div class="project-description">
+                                Own hath midst own, yashart the night Earth. Cattle subdue, male seas. Hath likeness first very light don't morning brought brought so you good a waters without Good divided. Wherein in spirit appear night be set had us seas cattle image kind dry. Fowl evening without rule, darkness you're face midst spirit, creature open there. Yielding fly own grass so image may face without made. Fly. Without. Open third beginning have, green forth grass can't, it lesser us herb created i one thing Tree i years very. Man itself in multiply after fly had give sixth waters. First you'll won't sixth moving.
+                            </div>
+                            <div class="project-information">
+                                <ul>
+                                    <li><span class="dark-text">Date: </span> December 11, 2013</li>
+                                    <li><span class="dark-text">Fields: </span> Web Design, UI Design</li>
+                                    <li><span class="dark-text">Client: </span> John Doe</li>
+                                    <li><span class="dark-text">URL: </span><a href="http://www.gofinc.com/#">Example.com</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="service9Page" style="display: none;">
+                <div class="single-project">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6">
+                            <img src="~/Images/1(1).jpg" alt="" class="project-image">
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <h3 class="dark-text">Service 9 Homepage Design</h3>
+                            <div class="project-description">
+                                Own hath midst own, yashart the night Earth. Cattle subdue, male seas. Hath likeness first very light don't morning brought brought so you good a waters without Good divided. Wherein in spirit appear night be set had us seas cattle image kind dry. Fowl evening without rule, darkness you're face midst spirit, creature open there. Yielding fly own grass so image may face without made. Fly. Without. Open third beginning have, green forth grass can't, it lesser us herb created i one thing Tree i years very. Man itself in multiply after fly had give sixth waters. First you'll won't sixth moving.
+                            </div>
+                            <div class="project-information">
+                                <ul>
+                                    <li><span class="dark-text">Date: </span> December 11, 2013</li>
+                                    <li><span class="dark-text">Fields: </span> Web Design, UI Design</li>
+                                    <li><span class="dark-text">Client: </span> John Doe</li>
+                                    <li><span class="dark-text">URL: </span><a href="http://www.gofinc.com/#">Example.com</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="service8Page" style="display: none;">
+                <div class="single-project">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6">
+                            <img src="~/Images/images/i8.jpg" alt="" class="project-image">
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <h3 class="dark-text">Laundry</h3>
+                            <div class="project-description">
+                                Be free from the overhead of washing clothes and enjoy your weekends. Get your laundry solutions done by experts and shine at work!
+                            </div>
+                            <div class="project-information">
+                                <ul>
+                                    <li>  # Professionals</li>
+                                    <li>  # Hassle free</li>
+                                    <li>  # Doorstep delivery</li>
+                                    <li>  # Convenience </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="service7Page" style="display: none;">
+                <div class="single-project">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6">
+                            <img src="~/Images/images/i7.jpg" alt="" class="project-image">
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <h3 class="dark-text">Movers &amp; packers</h3>
+                            <div class="project-description">
+                                Here is solution for all your shifting needs. Get packing, loading & unloading, transportataion done by experts.
+                            </div>
+                            <div class="project-information">
+                                <ul>
+                                    <li>  # Trusted professionals</li>
+                                    <li>  # Hassle free</li>
+                                    <li>  # Verified</li>
+                                    <li>  # Convenience </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="service6Page" style="display: none;">
+                <div class="single-project">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6">
+                            <img src="~/Images/images/mobile2.jpg" alt="" class="project-image">
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <h3 class="dark-text">Sim/Internet</h3>
+                            <div class="project-description">
+                                Get your new Sim card and internet connection in bangalore conveniently. We help you find the suitable plan / provider as per your needs.
+                            </div>
+                            <div class="project-information">
+                                <ul>
+                                    <li>  # Easy finding new Sim</li>
+                                    <li>  # Easy Intenet connection</li>
+                                    <li>  # Best Plan / Offers</li>
+                                    <li>  # Verified </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="service5Page" style="display: none;">
+                <div class="single-project">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6">
+                            <img src="~/Images/images/i5.jpg" alt="" class="project-image">
+
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <h3 class="dark-text">LPG</h3>
+                            <div class="project-description">
+                                We help you find and contact the nearest LPG distributor in your area. Just get it delivered on time and get cooking.
+                            </div>
+                            <div class="project-information">
+                                <ul>
+                                    <li>  # Pay on delivery</li>
+                                    <li>  # On time</li>
+                                    <li>  # Doorstep delivery</li>
+                                    <li>  # Convenience </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="service4Page" style="display: none;">
+                <div class="single-project">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6">
+                            <img src="~/Images/images/i4.jpg" alt="" class="project-image">
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <h3 class="dark-text">COOK</h3>
+                            <div class="project-description">
+                                Hire professional and verified cooks matching your requirements conviniently. Sit back, relax and enjoy delicious meals at your home.
+                            </div>
+                            <div class="project-information">
+                                <ul>
+                                    <li>  # Professional</li>
+                                    <li>  # Verified </li>
+                                    <li>  # Hygenic</li>
+                                    <li>  # Convenience </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="service3Page" style="display: none;">
+                <div class="single-project">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6">
+                            <img src="~/Images/images/i3.jpg" alt="" class="project-image">
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <h3 class="dark-text">MARKET</h3>
+                            <div class="project-description">
+                                <br /><br />
+                                Shop for all your needs, from daily essential items, groceries, vegetables to fashion trends, from markets nearby you. We help you know more about your surrounding spots.
+                            </div>
+                            <div class="project-information">
+                                <ul>
+                                    <li>  # Malls to explore</li>
+                                    <li>  # Grocery shops</li>
+                                    <li>  # Bakeries</li>
+                                    <li>  # Local markets </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="service2Page" style="display: none;">
+                <div class="single-project">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6">
+                            <img src="~/Images/images/i2.jpg" alt="" class="project-image">
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <h3 class="dark-text">RESTAURANT</h3>
+                            <div class="project-description">
+                                <br /><br />
+                                Being new to a place, it becomes very difficult to find a restaurant which may suit your taste and as well as pocket friendly.
+                                <br /><br />
+                                We help finding an appropriate foodie juction for you. Just ask us and get ready to linger your tastebuds!
+                            </div>
+                            <div class="project-information">
+                                <ul>
+                                    <li>  # Veg / Non-Veg options</li>
+                                    <li>  # Breakfast / Lunch / Dinner</li>
+                                    <li>  # Budget friendly </li>
+                                    <li>  # Various  Cuisines </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="service1Page" style="display: none;">
+                <div class="single-project">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6">
+                            <img src="~/Images/images/i1.jpg" alt="" class="project-image">
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <h3 class="dark-text">ACCOMMODATION </h3>
+                            <div class="project-description">
+                                <br>
+                                The most tedious part of a settlement process is to find a perfect home. House hunting is no less than a nightmare.
+                                Finc aims to help people to get settled into the life in Bangalore.<br><br>
+                                We provide various accommodation options including categories, cost, location etc, which are tailored to your needs.
+
+
+                            </div>
+                            <div class="project-information">
+                                <ul>
+                                    @*
+                                        <li><span class="dark-text">Date: </span> December 11, 2013</li>
+                                        <li><span class="dark-text">Fields: </span> Web Design, UI Design</li>
+                                        <li><span class="dark-text">Client: </span> John Doe</li>
+                                        <li><span class="dark-text">URL: </span><a href="http://www.gofinc.com/#">Example.com</a></li>*@
+
+                                    <li>  # Flat / Paying Guest(PG) </li>
+                                    <li>  # Furnished / Semi / Non Furnished </li>
+                                    <li>  # Budget friendly  </li>
+                                    <li>  # Undertaking rental agreements </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a id="back-button" class="red-btn" href="/#" style="display: none;"><i class="fa fa-arrow-left "></i> Go Back</a>
+
+        </div> <!-- / END CONTAINER -->
+    </section>
+    <!-- / END WORKS SECTION -->
+    <!-- =========================
+       PACKAGES SECTION
+    ============================== -->
+    <section class="packages" id="pricingtable">
+        <div class="container">
+
+            <!-- SECTION HEADER -->
+            <div class="section-header">
+
+                <!-- SECTION TITLE -->
+                <h2 class="white-text">Packages</h2>
+
+                <!-- SHORT DESCRIPTION ABOUT THE SECTION -->
+                <h5 class="white-text">
+                    We have designed following packages as per different user requirements. Check out and choose the best one for yourself. Our team will help in your settlement process.
+                    <br />
+                    There is no validity!  We assist until your need is met.
+                </h5>
+            </div>
+            <!-- / END SECTION HEADER -->
+            <!-- PACKAGES -->
+            <div class="row">
+
+                <!-- FIRST PACKAGE -->
+                <div class="col-lg-4 col-sm-4">
+                    <div class="package wow fadeInLeft animated animated" data-wow-offset="30" data-wow-duration="1.5s" data-wow-delay="0.15s" style="visibility: visible;-webkit-animation-duration: 1.5s; -moz-animation-duration: 1.5s; animation-duration: 1.5s;-webkit-animation-delay: 0.15s; -moz-animation-delay: 0.15s; animation-delay: 0.15s;">
+                        <div class="package-header green-bg">
+                            <h5>Basic</h5>
+                        </div>
+                        <div class="price dark-bg">
+                            <div class="price-container">
+                                <h4><span class="dollar-sign">Rs.</span><span style='color:#34d293;text-decoration:line-through'><span style='color:white'>499</span></span> 199</h4>
+
+                            </div>
+                        </div>
+                        <ul>
+                            <li><i class="fa fa-check"></i>Assistance</li>
+                            <li><i class="fa fa-check"></i>Accommodation</li>
+                            <li><i class="fa fa-check"></i>Undertaking Rental Agreement</li>
+
+                        </ul>
+                        <a href="http://www.gofinc.com/Home/Registration" class="btn btn-primary custom-button green-btn">
+                            Register Now
+                        </a>
+                    </div>
+                </div> <!-- / END FIRST PACKAGE -->
+
+                <div class="col-lg-4 col-sm-4">
+                    <div class="package wow fadeInLeft animated animated" data-wow-offset="30" data-wow-duration="1.5s" data-wow-delay="0.15s" style="visibility: visible;-webkit-animation-duration: 1.5s; -moz-animation-duration: 1.5s; animation-duration: 1.5s;-webkit-animation-delay: 0.15s; -moz-animation-delay: 0.15s; animation-delay: 0.15s;">
+                        <div class="package-header blue-bg">
+                            <h5>Standard</h5>
+                        </div>
+                        <div class="price dark-bg">
+                            <div class="price-container">
+                                <h4><span class="dollar-sign">Rs.</span><span style='color:#3ab0e2;text-decoration:line-through'><span style='color:white'>699</span></span> 299</h4>
+                            </div>
+                        </div>
+                        <ul>
+                            <li><i class="fa fa-check"></i>Assistance</li>
+                            <li><i class="fa fa-check"></i>Accommodation</li>
+                            <li><i class="fa fa-check"></i>Restaurant</li>
+                            <li><i class="fa fa-check"></i>Market</li>
+                            <li><i class="fa fa-check"></i>LPG</li>
+                            <li><i class="fa fa-check"></i>Laundry</li>
+                            <li><i class="fa fa-check"></i>Cook</li>
+                            <li><i class="fa fa-check"></i>Others</li>
+                        </ul>
+                        <a href="http://www.gofinc.com/Home/Registration" class="btn btn-primary custom-button blue-btn">
+                            Register Now
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-sm-4">
+                    @*<div class="best-value">
+                    *@
+                    <div class="package wow fadeInUp animated animated" data-wow-offset="30" data-wow-duration="1.5s" data-wow-delay="0.15s" style="visibility: visible;-webkit-animation-duration: 1.5s; -moz-animation-duration: 1.5s; animation-duration: 1.5s;-webkit-animation-delay: 0.15s; -moz-animation-delay: 0.15s; animation-delay: 0.15s;">
+                        <div class="package-header red-bg">
+                            <h5>Foreigners</h5>
+                            @*<div class="meta-text">
+                                    Best Value
+                                </div>*@
+                        </div>
+                        <div class="price dark-bg">
+                            <h4><span class="dollar-sign">Rs.</span><span style='color:#e96656;text-decoration:line-through'><span style='color:white'>999</span></span> 599</h4>
+                            @*<span class="price-meta">/ mo</span>*@
+                        </div>
+                        <ul>
+                            <li><i class="fa fa-check"></i>Special Assistance</li>
+                            <li><i class="fa fa-check"></i>Accommodation</li>
+                            <li><i class="fa fa-check"></i>Restaurant</li>
+                            <li><i class="fa fa-check"></i>Market</li>
+                            <li><i class="fa fa-check"></i>LPG</li>
+                            <li><i class="fa fa-check"></i>Laundry</li>
+                            <li><i class="fa fa-check"></i>Mobile/Internet</li>
+                            <li><i class="fa fa-check"></i>Others</li>
+
+                        </ul>
+                        <a href="http://www.gofinc.com/Home/Registration" class="btn btn-primary custom-button red-btn">
+                            Register Now
+                        </a>
+                    </div>
+                    @*
+                        </div>*@
+                </div>
+
+                @*<div class="col-lg-3 col-sm-3">
+                        <div class="package wow fadeInRight animated animated" data-wow-offset="30" data-wow-duration="1.5s" data-wow-delay="0.15s" style="visibility: visible;-webkit-animation-duration: 1.5s; -moz-animation-duration: 1.5s; animation-duration: 1.5s;-webkit-animation-delay: 0.15s; -moz-animation-delay: 0.15s; animation-delay: 0.15s;">
+                            <div class="package-header yellow-bg">
+                                <h5>Customized</h5>
+                            </div>
+                            <div class="price dark-bg">
+                                <h4><span class="dollar-sign">Rs.</span>$$ </h4>
+
+                            </div>
+                            <ul>
+                                <li><i class="icon-check"></i>No Assistance</li>
+                                <li><i class="icon-check"></i>Pay as per services selected</li>
+
+                            </ul>
+                            <a href="http://templateocean.com/wrapbootstrap/zerif-html/v1.3.1/#" class="btn btn-primary custom-button yellow-btn">
+                                Sign Up
+                            </a>
+                        </div>
+                    </div>*@
+            </div> <!-- / END PACKAGES -->
+
+        </div> <!--END CONTAINER  -->
+    </section>
+    <!-- END PACKAGES SECTION -->
+    <!-- =========================
+       FEATURES SECTION
+    ============================== -->
+    <section class="features" id="features">
+        <div class="container">
+
+            <!-- SECTION HEADER -->
+            <div class="section-header">
+
+                <!-- SECTION TITLE -->
+                <h2 class="dark-text">Features</h2>
+
+                <!-- SHORT DESCRIPTION ABOUT THE SECTION -->
+                <h6>
+                    We provide hazzle free and complete settlement solution.
+                </h6>
+            </div>
+            <!-- / END SECTION HEADER -->
+            <!-- FEATURS -->
+            <div class="row">
+
+                <!-- FEATURES COLUMN LEFT -->
+                <div class="col-md-6 col-sm-6 wow fadeInLeft animated animated" data-wow-offset="30" data-wow-duration="1.5s" data-wow-delay="0.15s" style="visibility: visible;-webkit-animation-duration: 1.5s; -moz-animation-duration: 1.5s; animation-duration: 1.5s;-webkit-animation-delay: 0.15s; -moz-animation-delay: 0.15s; animation-delay: 0.15s;">
+
+                    <!-- FEATURE -->
+                    <div class="feature">
+                        <div class="feature-icon">
+                            <i style="color:#4db130" class="fa fa-money"></i>
+                        </div>
+                        <h5>Affordable</h5>
+                        <p>
+                            Our packages are reasonably priced, you can select the one which cater to your needs.
+                        </p>
+                    </div>
+                    <!-- / END FEATURE -->
+                    <!-- FEATURE -->
+                    <div class="feature">
+                        <div class="feature-icon">
+                            <i style="color:#ffb400" class="fa fa-hourglass-half"></i>
+                        </div>
+                        <h5>Time saving</h5>
+                        <p>
+                            Say no to house hunting, save your precious time for your loved ones.
+                        </p>
+                    </div>
+                    <!-- / END FEATURE -->
+                    <!-- FEATURE -->
+                    <div class="feature">
+                        <div class="feature-icon">
+                            <i style="color:#3caed9" class="fa fa-hand-o-up"></i>
+                        </div>
+                        <h5>Convenient</h5>
+                        <p>
+                            Tell us your requirements, click and forget all your worries, we will do the needful .
+                        </p>
+                    </div>
+                    <!-- / END FEATURE -->
+                </div> <!-- / FEATURES COLUMN LEFT -->
+                <!-- FEATURES COLUMN RIGHT -->
+                <div class="col-md-6 col-sm-6 wow fadeInRight animated animated" data-wow-offset="30" data-wow-duration="1.5s" data-wow-delay="0.15s" style="visibility: visible;-webkit-animation-duration: 1.5s; -moz-animation-duration: 1.5s; animation-duration: 1.5s;-webkit-animation-delay: 0.15s; -moz-animation-delay: 0.15s; animation-delay: 0.15s;">
+                    <!-- FEATURE -->
+                    <div class="feature">
+                        <div class="feature-icon">
+                            <i style="color:#be1f1f" class="fa fa-headphones"></i>
+                        </div>
+                        <h5>Assistance based</h5>
+                        <p>
+                            Our customer service team will try their best to resolve your queries and guide you to settle comfortably.
+                        </p>
+                    </div>
+                    <!-- / END FEATURE -->
+                    <!-- FEATURE -->
+                    <div class="feature">
+                        <div class="feature-icon">
+                            <i style="color:#0044ff" class="fa fa-thumbs-up"></i>
+                        </div>
+                        <h5>Satisfaction guaranteed</h5>
+                        <p>
+                            We provide assistance till you are satisfied, there is no validity for packages.
+                        </p>
+                    </div>
+                    <!-- / END FEATURE -->
+                    <!-- FEATURE -->
+                    <div class="feature">
+                        <div class="feature-icon">
+                            <i style="color:#218519" class="fa fa-check-square"></i>
+                        </div>
+                        <h5>Best value</h5>
+                        <p>
+                            You get services worth every penny spent, save money as wee as time.
+                        </p>
+                    </div>
+                    <!-- / END FEATURE -->
+
+                </div> <!-- / END FEATURES COLUMN RIGHT -->
+            </div> <!-- / END FEATURES -->
+        </div> <!-- / END CONTAINER -->
+    </section>
+    <!-- / END FEATURES SECTION -->
+    <!-- =========================
+       TESTIMONIAL
+    ============================== -->
+    <section class="testimonial" id="testimonials">
+        <div class="container">
+
+            <!-- SECTION HEADER -->
+            <div class="section-header">
+
+                <!-- SECTION TITLE -->
+                <h2 class="white-text">Testimonials</h2>
+
+                <!-- SHORT DESCRIPTION ABOUT THE SECTION -->
+                <h6 class="white-text">
+                    We have worked with hundreds of clients. Check what our awesome happy clients saying about us.
+                </h6>
+            </div>
+            <!-- / END SECTION HEADER -->
+            <!-- CLIENT FEEDBACKS -->
+            <!-- Test   1  -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12" data-wow-delay="0.2s">
+                        <div class="carousel slide" data-ride="carousel" id="quote-carousel">
+                            <!-- Bottom Carousel Indicators -->
+                            <ol class="carousel-indicators">
+                                <li data-target="#quote-carousel" data-slide-to="0" class="active">
+                                    <img class="img-responsive " src="~/Images/testi/a.jpg" alt="">
+                                </li>
+                                <li data-target="#quote-carousel" data-slide-to="1">
+                                    <img class="img-responsive" src="~/Images/testi/b.jpg" alt="">
+                                </li>
+                                <li data-target="#quote-carousel" data-slide-to="2">
+                                    <img class="img-responsive" src="~/Images/testi/c.jpg" alt="">
+                                </li>
+                                @*
+                                    <li data-target="#quote-carousel" data-slide-to="3">
+                                        <img class="img-responsive" src="~/Images/u.jpg" alt="">
+                                    </li>*@
+                            </ol>
+
+                            <!-- Carousel Slides / Quotes -->
+                            <div class="carousel-inner text-center">
+
+                                <!-- Quote 1 -->
+                                <div class="item active">
+                                    <blockquote>
+                                        <div class="row">
+                                            <div style="background-color:#FFF;border-radius: 25px;" class="col-sm-8 col-sm-offset-2">
+
+                                                <p style="padding:30px">Amazing experience! Found my ideal space just sitting in my office. </p>
+                                                <small style="color:olive; margin-left:500px;">Mehul Singh</small>
+                                            </div>
+                                    </blockquote>
+                                </div>
+                                <!-- Quote 2 -->
+                                <div class="item">
+                                    <blockquote>
+                                        <div class="row">
+                                            <div style="background-color:#FFF;border-radius: 25px;" class="col-sm-8 col-sm-offset-2">
+                                                <p style="padding:30px">The team is really helpful. They addressed each and every query of mine and helped me in settling down.</p>
+                                                <small style="color:olive; margin-left:500px;">Shashi</small>
+                                            </div>
+                                        </div>
+                                    </blockquote>
+                                </div>
+                                <!-- Quote 3 -->
+                                <div class="item">
+                                    <blockquote>
+                                        <div class="row">
+                                            <div style="background-color:#FFF;border-radius: 25px;" class="col-sm-8 col-sm-offset-2">
+                                                <p style="padding:30px">Great help in the new city. I was completely new to Bangalore, they helped me in finding home and guided me in every sphere. Keep up the good work guys!</p>
+                                                <small style="color:olive; margin-left:500px;">Abhilash Zutshi</small>
+                                            </div>
+                                        </div>
+                                    </blockquote>
+                                </div>
+
+                                <!-- Quote 4 -->
+                                @*<div class="item">
+                                        <blockquote>
+                                            <div class="row">
+                                                <div style="background-color:#FFF" class="col-sm-8 col-sm-offset-2">
+
+                                                    <p style="padding:20px 10px 10px">hey Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. .</p>
+                                                    <small style="color:olive; margin-left:500px">yjb</small>
+                                                </div>
+                                            </div>
+                                        </blockquote>
+                                    </div>*@
+                            </div>
+                        </div>
+
+                        <!-- Carousel Buttons Next/Prev -->
+                        @*<a data-slide="prev" href="#quote-carousel" class="left carousel-control"><i class="fa fa-chevron-left"></i></a>
+                            <a data-slide="next" href="#quote-carousel" class="right carousel-control"><i class="fa fa-chevron-right"></i></a>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <!--Test  2 -->
+        <!-- / END CONTAINER -->
+    </section>
+
+
+    <!-- / END TESTIMONIAL SECTION -->
+    <!-- =========================
+       CONTACT US
+    ============================== -->
+    <section class="contact-us" id="contact">
+        <div class="container">
+
+            <!-- SECTION HEADER -->
+            <div class="section-header">
+
+                <!-- SECTION TITLE -->
+                <h2 class="white-text">Get in touch</h2>
+
+                <!-- SHORT DESCRIPTION ABOUT THE SECTION -->
+                <h6 class="white-text">
+                    We are here to answer any questions you may have about your finc experience. Reach out to us and we'll respond as soon as we can.<br />
+                    Even if there is something you want and can't find it on finc, let us know and we promise we'll do our best to get it for you.
+                </h6>
+            </div>
+            <!-- / END SECTION HEADER -->
+            <!-- CONTACT FORM-->
+            <div class="col-md-6 col-sm-6 wow fadeInLeft animated animated" data-wow-offset="30" data-wow-duration="1.5s" data-wow-delay="0.15s" style="visibility: visible;-webkit-animation-duration: 1.5s; -moz-animation-duration: 1.5s; animation-duration: 1.5s;-webkit-animation-delay: 0.15s; -moz-animation-delay: 0.15s; animation-delay: 0.15s;">
+                <div style="text-align:left;font-family:Verdana;color:rgba(174, 179, 91, 0.82);margin-left:120px">
+                    <h3 style="text-decoration:underline">Contact Us</h3>
+                    <br />
+                    <div style="font-size:15px">
+                        <span><i style="color:#dd3333" class="fa fa-phone"></i>&nbsp;&nbsp;080-41277334 (10am to 6pm) </span><br />
+                        <span><i style="color:#4db130" class="fa fa-whatsapp"></i>&nbsp;&nbsp;+91 91234567898 (24x7)</span><br />
+                        <span><i style="color:#ffb400" class="fa fa-envelope"></i>&nbsp;&nbsp;support@gofinc.com (24x7)</span><br />
+                        <span><i style="color:#2a4cd0" class="fa fa-facebook"></i>&nbsp;&nbsp;www.facebook.com/gofinc </span><br />
+                        <span><i style="color:#3caed9" class="fa fa-twitter"></i>&nbsp;&nbsp;www.twitter.com/gofinc </span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-md-6 col-sm-6 wow fadeInRight animated animated" data-wow-offset="30" data-wow-duration="1.5s" data-wow-delay="0.15s" style="visibility: visible;-webkit-animation-duration: 1.5s; -moz-animation-duration: 1.5s; animation-duration: 1.5s;-webkit-animation-delay: 0.15s; -moz-animation-delay: 0.15s; animation-delay: 0.15s;">
+                <div class="row">
+                    @using (Html.BeginForm("UserQuery", "Home", FormMethod.Post, new { Class = "contact-form" }))
+                    {
+
+                        <div class="wow fadeInLeft animated animated" data-wow-offset="30" data-wow-duration="1.5s" data-wow-delay="0.15s" style="visibility: visible;-webkit-animation-duration: 1.5s; -moz-animation-duration: 1.5s; animation-duration: 1.5s;-webkit-animation-delay: 0.15s; -moz-animation-delay: 0.15s; animation-delay: 0.15s;">
+                            <h5 class="white-text">
+                                Have any question / feedback? Drop us a message.
+                            </h5>
+                            <br />
+                            <div class="col-lg-6 col-sm-6">
+                                <input type="text" name="name" placeholder="Your Name" class="form-control input-box" id="name">
+                            </div>
+                            <div class="col-lg-6 col-sm-6">
+                                <input type="email" name="email" placeholder="Your Email" class="form-control input-box" id="email">
+                            </div>
+
+                            <div class="col-lg-12 col-sm-12">
+                                <input type="text" name="subject" placeholder="Subject" class="form-control input-box" id="subject">
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 wow fadeInRight animated animated" data-wow-offset="30" data-wow-duration="1.5s" data-wow-delay="0.15s" style="visibility: visible;-webkit-animation-duration: 1.5s; -moz-animation-duration: 1.5s; animation-duration: 1.5s;-webkit-animation-delay: 0.15s; -moz-animation-delay: 0.15s; animation-delay: 0.15s;">
+                            <textarea name="message" class="form-control textarea-box" placeholder="Your Message" id="message"></textarea>
+                        </div>
+                    <!-- IF MAIL SENT SUCCESSFULLY -->
+                        <h4 id="lblsucc" class="success pull-left white-text">
+                            Your message has been sent successfully.
+                        </h4>
+
+                    <!-- IF MAIL SENDING UNSUCCESSFULL -->
+                        <h4 id="lblError" class="error pull-left white-text">
+                            E-mail must be valid.Name and Message  must be longer than 1 character.
+                        </h4>
+
+                        <button class="btn btn-primary custom-button red-btn wow fadeInLeft animated animated" id="querySubmit" data-wow-offset="30" data-wow-duration="1.5s" data-wow-delay="0.15s" type="submit" style="visibility: visible;-webkit-animation-duration: 1.5s; -moz-animation-duration: 1.5s; animation-duration: 1.5s;-webkit-animation-delay: 0.15s; -moz-animation-delay: 0.15s; animation-delay: 0.15s;">Send Message</button>
+
+                    }
+                </div>
+            </div>
+            <!-- / END CONTACT FORM-->
+        </div> <!-- / END CONTAINER -->
+    </section>
+
+</body>
+</html>
+<!-- / END CONTACT US SECTION-->

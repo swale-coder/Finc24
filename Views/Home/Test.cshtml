@@ -1,0 +1,498 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bootstrap-select test page</title>
+    <meta charset="utf-8">
+
+    <link href="~/Content/Styles/animate.min.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="~/Content/Styles/styles.css">
+    @*<link rel="stylesheet" href="~/Content/Styles/pixeden-icons.css">*@
+    <!-- CUSTOM STYLES -->
+    <link rel="stylesheet" href="~/Content/Styles/styles(1).css">
+    <link rel="stylesheet" href="~/Content/Styles/responsive.css">
+    <!-- WEBFONT -->
+    <link href="~/Content/Styles/css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="D:/finc/Finc24/Finc24/Content/bootstrap-multiselect.css">
+    <script type="text/javascript" src="D:/finc/Finc24/Finc24/Content/bootstrap-multiselect.js"></script>
+
+    @*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">*@
+    <link rel="stylesheet" href="~/Content/Styles/bootstrap.min.css">
+    <link href="~/Dropdown/bootstrap-select.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Content/Styles/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+    <script src="~/Dropdown/bootstrap-select.js"></script>
+</head>
+<body style="margin-top:6%;box-shadow: 1px 2px 13px 0 rgba(29,29,29,.12);">
+
+    <!-- =========================
+       PRE LOADER
+    ============================== -->
+    <div class="preloader" style="display: none;">
+        <div class="status" style="display: none;">
+            &nbsp;
+        </div>
+    </div>
+
+    <!-- TOP BAR -->
+    <div id="main-nav" class="navbar navbar-inverse bs-docs-nav fixed" role="banner">
+        <div class="container">
+            <div class="navbar-header responsive-logo">
+                <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#bs-navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="navbar-brand">
+                    <img src="~/Images/finclogo2.png" alt="Zerif" style="height: 80px;margin-top: -30px;">
+                </div>
+            </div>
+            <nav class="navbar-collapse collapse" role="navigation" id="bs-navbar-collapse">
+                <ul class="nav navbar-nav navbar-right responsive-nav main-nav-list">
+                    <li class="current"><a href="http://templateocean.com/wrapbootstrap/zerif-html/v1.3.1/#home">Home</a></li>
+                    <li class=""><a href="http://templateocean.com/wrapbootstrap/zerif-html/v1.3.1/#focus">Our Focus</a></li>
+                    <li class=""><a href="http://templateocean.com/wrapbootstrap/zerif-html/v1.3.1/#works">Services</a></li>
+
+                    <li class=""><a href="http://templateocean.com/wrapbootstrap/zerif-html/v1.3.1/#pricingtable">Pricing</a></li>
+                    <li class=""><a href="http://templateocean.com/wrapbootstrap/zerif-html/v1.3.1/#features">Features</a></li>
+                    <!--<li class=""><a href="http://templateocean.com/wrapbootstrap/zerif-html/v1.3.1/#products">Products</a></li>-->
+                    @*<li class=""><a href="http://templateocean.com/wrapbootstrap/zerif-html/v1.3.1/#team">Team</a></li>
+                        <li class=""><a href="http://templateocean.com/wrapbootstrap/zerif-html/v1.3.1/#aboutus">About Us</a></li>*@
+
+                    <li class=""><a href="http://templateocean.com/wrapbootstrap/zerif-html/v1.3.1/#testimonials">Reviews</a></li>
+                    <li class=""><a href="http://templateocean.com/wrapbootstrap/zerif-html/v1.3.1/#contact">Contact Us</a></li>
+                    <li class=""><a href="http://templateocean.com/wrapbootstrap/zerif-html/v1.3.1/#contact"></a></li>
+
+                    @*<li class=""><a href="">Login</a></li>*@
+                    <li>
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                            Log in
+                        </button>
+                        <p style="font-size: 10px;">
+                            New customer? @Html.ActionLink("Register Now", "Registration", "Home", new { style = "font-size: 11px;" })
+
+                        </p>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="col-xs-4 col-md-2">
+        </div>
+        <div class="col-xs-4 col-md-8">
+            @using (Html.BeginForm("", "", FormMethod.Post, new { style = "background: white;box-shadow: 1px 2px 13px 0 rgba(29,29,29,.12);" }))
+            {
+                <div class="col-md-12" style="margin:25px">
+                    <div class="col-md-12">
+                        @*<input type="text" class="form-control" placeholder="Start" />*@
+                        <span class="input-group-addon" style="border-radius: 40px;background: #39d3b7;color: white; font-weight: bold">Personal Information</span>
+                        @*<input type="text" class="form-control" placeholder="End" />*@
+                    </div><br>
+                    <br>
+
+
+                    <div class="col-md-12">
+                        <span class="col-md-2" style="padding-top: 5px;font-weight: bold;">Name </span>@*<span class="glyphicon glyphicon-user"></span>*@
+                        <div class="col-md-8">
+                            <input id="name" name="Name" type="text" class="form-control" required="">
+                        </div>
+                        @*<div class="col-md-2">*@<span style="color: Red; font-size: 20px;float:left;font-weight:bold">*</span>@*</div>*@
+                    </div>
+                    <br>
+                    <br><br>
+                    <div class="col-md-12">
+                        <span class="col-md-2" style="padding-top: 5px;font-weight: bold;">Mobile </span>@*<span class="glyphicon glyphicon-user"></span>*@
+                        <div class="col-md-8">
+                            <input id="mobile" name="Mobile" type="text" class="form-control" required="">
+                        </div>
+                        <span style="color: Red; font-size: 20px;float:left;font-weight:bold">*</span>
+                    </div>
+
+                    <br><br><br />
+                    <div class="col-md-12">
+                        <span class="col-md-2" style="padding-top: 5px;font-weight: bold;">Date of Birth </span>@*<span class="glyphicon glyphicon-user"></span>*@
+                        <div class="col-md-8">
+                            <input id="dob" name="Dob" type="text" class="form-control">
+                        </div>
+
+                        <span style="color: lightgray; font-size: 13px;">Format: dd/mm/yyyy</span>
+                    </div>
+
+                    <br>
+                    <br><br>
+                    <div class="col-md-12" id="radioGender">
+                        <span class="col-md-2" style="padding-top: 5px;font-weight: bold;">Gender </span>@*<span class="glyphicon glyphicon-user"></span>*@
+                        @*<div id="radioGenderBtn" class="btn-group">
+                                <a class="btn btn-primary btn-sm active" data-toggle="gender" data-title="M">MALE</a>
+                                <a class="btn btn-primary btn-sm notActive" data-toggle="gender" data-title="F">FEMALE</a>
+                            </div>*@
+                        <div class="col-md-8" data-toggle="buttons">
+                            <label class="btn btn-primary active" style="float:left;">
+                                <input name="Male" value="2011" type="radio">MALE
+                            </label>
+                            <label class="btn btn-primary" style="float:left;margin-left:10px;">
+                                <input name="Female" value="2012" type="radio">FEMALE
+                            </label>
+
+                        </div>
+                        @*<div id="radioGenderBtn" class="col-md-8">
+                                <a class="btn btn-primary btn-sm active" data-toggle="gender" data-title="M" style="float: left;">MALE</a>
+                                <a class="btn btn-primary btn-sm notActive" data-toggle="gender" data-title="F" style="float: left;margin-left: 5px;">FEMALE</a>
+                            </div>*@
+                        <div class="col-md-2"></div>
+                    </div>
+
+
+                    <br>
+                    <br><br>
+                    <div class="col-md-12">
+                        <span class="col-md-2" style="padding-top: 5px;font-weight: bold;">Nationality </span>@*<span class="glyphicon glyphicon-user"></span>*@
+                        <div class="col-md-8">
+                            <select class="col-md-12" id="country" name=slist style="height:28px;border: 1px solid #ccc;border-radius: 4px;color: gray;">
+                                <option value="">Select your country</option>
+                                <option value="AF">Afghanistan</option>
+                                <option value="AX">Åland Islands</option>
+                                <option value="IN">India</option>
+
+
+                            </select>
+                        </div>
+                        <div class="col-md-2"></div>
+                    </div>
+
+                    <br>
+                    <br><br>
+                    <div class="col-md-12">
+                        <span class="col-md-2" style="padding-top: 5px;font-weight: bold;">State </span>@*<span class="glyphicon glyphicon-user"></span>*@
+                        <div class="col-md-8">
+                            <select class="col-md-12" id="state" name=slist style="height:28px;border: 1px solid #ccc;border-radius: 4px;color: gray;">
+                                <option value="">Select your native state</option>
+                                <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+                                <option value="Andhra Pradesh">Andhra Pradesh</option>
+                                <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                                <option value="Assam">Assam</option>
+                                <option value="Bihar">Bihar</option>
+                                <option value="Chandigarh">Chandigarh</option>
+                                <option value="Chhattisgarh">Chhattisgarh</option>
+                                <option value="Dadra and Nagar Haveli">Dadra and Nagar Haveli</option>
+                                <option value="Daman and Diu">Daman and Diu</option>
+                                <option value="Delhi">Delhi</option>
+                                <option value="Goa">Goa</option>
+                                <option value="Gujarat">Gujarat</option>
+                                <option value="Haryana">Haryana</option>
+                                <option value="Himachal Pradesh">Himachal Pradesh</option>
+                                <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                                <option value="Jharkhand">Jharkhand</option>
+                                <option value="Karnataka">Karnataka</option>
+                                <option value="Kerala">Kerala</option>
+                                <option value="Lakshadweep">Lakshadweep</option>
+                                <option value="Madhya Pradesh">Madhya Pradesh</option>
+                                <option value="Maharashtra">Maharashtra</option>
+                                <option value="Manipur">Manipur</option>
+                                <option value="Meghalaya">Meghalaya</option>
+                                <option value="Mizoram">Mizoram</option>
+                                <option value="Nagaland">Nagaland</option>
+                                <option value="Orissa">Orissa</option>
+                                <option value="Pondicherry">Pondicherry</option>
+                                <option value="Punjab">Punjab</option>
+                                <option value="Rajasthan">Rajasthan</option>
+                                <option value="Sikkim">Sikkim</option>
+                                <option value="Tamil Nadu">Tamil Nadu</option>
+                                <option value="Tripura">Tripura</option>
+                                <option value="Uttaranchal">Uttaranchal</option>
+                                <option value="Uttar Pradesh">Uttar Pradesh</option>
+                                <option value="West Bengal">West Bengal</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2"></div>
+                    </div>
+
+                    <br />
+                    <br />
+                    <br />
+
+                    <div class="col-md-12">
+                        @*<input type="text" class="form-control" placeholder="Start" />*@
+                        @*<span class="input-group-addon" style="border-radius: 4px;background: #F7F7F8;color: black;">Finc Related Information</span>*@
+                        <span class="input-group-addon" style="border-radius: 40px;background: #39d3b7;color: white; font-weight: bold">Requirement Details</span>
+                        @*<input type="text" class="form-control" placeholder="End" />*@
+                    </div>
+                    <br />
+                    <br />
+                    <br />
+                    <div class="col-md-12">
+                        <span class="col-md-2" style="padding-top: 5px;font-weight: bold;"> Preferred Location </span>@*<span class="glyphicon glyphicon-user"></span>*@
+                        @*<div id="radioLocalityBtn" class="col-md-8">
+                            <a class="btn btn-primary btn-sm active" data-toggle="loc" data-title="of" style="float: left;">Near to office</a>
+                            <a class="btn btn-primary btn-sm notActive" data-toggle="loc" data-title="lo" style="float: left;margin-left: 5px;">
+                                Desired Locality
+                            </a> <a class="btn btn-primary btn-sm notActive" data-toggle="loc" data-title="as" style="float: left;margin-left: 5px;">
+                                Need Assistance
+                            </a>
+                            @*<a class="btn btn-primary btn-sm active" data-toggle="gender" data-title="M" style="float: left;">MALE</a>
+                                <a class="btn btn-primary btn-sm notActive" data-toggle="gender" data-title="F" style="float: left;margin-left: 5px;">FEMALE</a>*@
+                        @*</div>*@
+                        <div class="col-md-8" data-toggle="buttons" id="radioLocation">
+                            <label class="btn btn-primary active" style="float:left;">
+                                <input name="year" value="2011" type="radio">Near to office
+                            </label>
+                            <label class="btn btn-primary" style="float:left;margin-left:10px;">
+                                <input name="year" value="2012" type="radio">Desired Locality
+                            </label>
+                            <label class="btn btn-primary" style="float:left;margin-left:10px;">
+                                <input name="year" value="2011" type="radio">Need Assistance
+                            </label>
+                        </div>
+                        <div class="col-md-2"></div>
+                    </div>
+
+                    <br>
+                    <br><br>
+                    <div class="col-md-12">
+                        <span class="col-md-2" style="padding-top: 5px;font-weight: bold;">Location</span>
+                        <div class="col-md-8">
+                            <select id="example-getting-started" multiple="multiple">
+                                <option value="cheese">Cheese</option>
+                                <option value="tomatoes">Tomatoes</option>
+                                <option value="mozarella">Mozzarella</option>
+                                <option value="mushrooms">Mushrooms</option>
+                                <option value="pepperoni">Pepperoni</option>
+                                <option value="onions">Onions</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2"></div>
+                    </div>
+
+
+
+
+
+                    @*<div class="col-md-12">
+                            <span class="col-md-2" style="padding-top: 5px;font-weight: bold;">Location</span>
+                            <div class="col-md-8">
+                                <select id="basic2" class="show-tick form-control" multiple>
+
+                                    <option>cow</option>
+                                    <option>bull</option>
+                                    <option class="get-class" disabled>ox</option>
+                                    <optgroup label="test" data-subtext="another test">
+                                        <option>ASD</option>
+                                        <option selected>Select Location</option>
+                                        <option>Ble</option>
+                                    </optgroup>
+                                </select>
+                            </div>
+                            <div class="col-md-2"></div>
+                        </div>*@
+                    <br />
+                    <br /><br />
+                    <div class="col-md-12">
+                        <span class="col-md-2" style="padding-top: 5px;font-weight: bold;">Company </span>@*<span class="glyphicon glyphicon-user"></span>*@
+                        <div class="col-md-8">
+                            <input id="organization" name="Organization" type="text" class="form-control" required="">
+                        </div>
+                        <span style="color: Red; font-size: 20px;float:left;font-weight:bold">*</span>
+                    </div>
+
+                    <br />
+                    <br /><br />
+                    <div class="col-md-12">
+                        <span class="col-md-2" style="padding-top: 5px;font-weight: bold;">Package </span>@*<span class="glyphicon glyphicon-user"></span>*@
+                        <div class="col-md-8">
+                            <select class="col-md-12" id="package" name=slist style="height:34px;border: 1px solid #ccc;border-radius: 4px;color: gray;">
+                                <option value="">Select Your Package</option>
+                                <option value="pck1">Basic: Rs.199</option>
+                                <option value="pck2">Standard: Rs 299</option>
+                                <option value="pck3">Foreigner: Rs 499</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2"></div>
+                    </div>
+                    <br /><br /><br />
+                    <div class="col-md-12">
+                        <span class="col-md-2" style="font-weight: bold;">Any other requirement? </span>@*<span class="glyphicon glyphicon-user"></span>*@
+                        <div class="col-md-8">
+                            <textarea class="form-control" rows="5" id="otherRequirement" style="height:50px"></textarea>
+                        </div>
+                        <div class="col-md-2"></div>
+                    </div>
+                    <br />
+                    <br /><br /><br />
+
+                    <div class="col-md-12">
+                        @*<input type="text" class="form-control" placeholder="Start" />*@
+                        @*<span class="input-group-addon" style="border-radius: 4px;background: #F7F7F8;color: black;">Login Information</span>*@
+                        <span class="input-group-addon" style="border-radius: 40px;background: #39d3b7;color: white; font-weight: bold">Login Details</span>
+                        @*<input type="text" class="form-control" placeholder="End" />*@
+                    </div>
+                    <br />
+                    <br /><br />
+                    <div class="col-md-12">
+                        <span class="col-md-2" style="padding-top: 5px;font-weight: bold;">Email Id </span>@*<span class="glyphicon glyphicon-user"></span>*@
+                        <div class="col-md-8">
+                            <input id="emailId" name="EmailId" type="text" class="form-control" required="">
+                        </div>
+                        <span style="color: Red; font-size: 20px;float:left;font-weight:bold">*</span><span style="color: lightgray; font-size: 13px;">This will be your User ID</span>
+                    </div>
+                    <br />
+                    <br /><br />
+                    <div class="col-md-12">
+                        <span class="col-md-2" style="padding-top: 5px;font-weight: bold;">Password </span>@*<span class="glyphicon glyphicon-user"></span>*@
+                        <div class="col-md-8">
+                            <input id="pw1" name="password" type="password" class="form-control" required="">
+                        </div>
+                        <span style="color: Red; font-size: 20px;float:left;font-weight:bold">*</span>
+                    </div>
+                    <br />
+                    <br /><br />
+                    <div class="col-md-12">
+                        <span class="col-md-2" id="pw2" name="pw2" type="password" style="padding-top: 5px;font-weight: bold;"> Confirm Password </span>@*<span class="glyphicon glyphicon-user"></span>*@
+                        <div class="col-md-8">
+                            <input id="pw1" name="confirmPassword" type="password" class="form-control" required="">
+                        </div>
+                        <span style="color: Red; font-size: 20px;float:left;font-weight:bold">*</span>
+                    </div>
+                    <br />
+                    <br /><br />
+
+
+                    @*<div class="col-md-12">
+                            <span class="col-md-2" style="padding-top: 5px;font-weight: bold;">Suggestion </span>
+                            <div class="col-md-8">
+                                <textarea class="form-control" rows="5" id="otherSuggestion"></textarea>
+                            </div>
+                            <div class="col-md-2"></div>
+                        </div>*@
+                    <div class="col-md-12">
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4" style="margin-top: 8px;">
+                            <button id="btnRegister" type="button" class="btn btn-success">Register</button>
+                            <button type="button" id="btnCancel" class="btn btn-danger">Cancel</button>
+                        </div>
+                        <div class="col-md-4"></div>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="col-xs-4 col-md-2">
+
+        </div>
+    </div>
+    <script src="~/Scripts/JS/zerif.js"></script>
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="login">
+                    <header class=" login-header">
+
+                        <span class="text">LOGIN</span><span class="loader"></span>
+                    </header>
+                    <form class="login-form">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <input type="text" placeholder="Username" id="userName" class="login-input" />
+                        <input type="password" placeholder="Password" id="password" class="login-input" />
+                        <button type="submit" class="login-btn">login</button>
+                    </form>
+                </div>
+
+
+                @*<form role="form">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="uLogin" placeholder="Login">
+                                <label for="uLogin" class="input-group-addon glyphicon glyphicon-user"></label>
+                            </div>
+                        </div> <!-- /.form-group -->
+
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="password" class="form-control" id="uPassword" placeholder="Password">
+                                <label for="uPassword" class="input-group-addon glyphicon glyphicon-lock"></label>
+                            </div> <!-- /.input-group -->
+                        </div> <!-- /.form-group -->
+
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox"> Remember me
+                            </label>
+                        </div> <!-- /.checkbox -->
+                    </form>*@
+
+                @*</div>*@ <!-- /.modal-body -->
+                @*<div class="modal-footer">
+                        <button class="form-control btn btn-primary">Ok</button>
+
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="100" style="width: 0%;">
+                                <span class="sr-only">progress</span>
+                            </div>
+                        </div>
+                    </div>*@ <!-- /.modal-footer -->
+
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#btnRegister').click(function () {
+                //  alert(1);
+                var mySelect = $('#radioLocation .active').text();
+                $("#dropdown").prop("disabled", true);
+                alert(mySelect);
+
+            });
+
+
+            $('.login-btn').css('cursor', 'hand');
+            $('.login-btn').click(function () {
+                var loginId = $('#userName').val();
+                var password = $('#password').val();
+                var data = JSON.stringify({
+                    'loginId': loginId,
+                    'password': password
+                });
+                //alert(data);
+                $.ajax({
+                    type: "POST",
+                    url: '/Home/Index',
+                    data: data,
+                    success: function () { },
+                    contentType: 'application/json'
+                });
+            });
+        });
+    </script>
+
+</body>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var mySelect = $('#first-disabled2');
+
+        $('#basic2').selectpicker({
+            liveSearch: true,
+            maxOptions: 3
+        });
+    });
+</script>
+
+<!-- Initialize the plugin: -->
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#example-getting-started').multiselect();
+    });
+</script>
+
+
+
+</html>
