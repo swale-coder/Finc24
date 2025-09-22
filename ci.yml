@@ -1,18 +1,25 @@
-name: CI Build
+﻿name: CI Build
 
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]   # or main, depending on your repo
   pull_request:
-    branches: [ main ]
+    branches: [ master ]
+  workflow_dispatch:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest   # ⚠️ Important: use Windows runner (Linux doesn't have Web workloads)
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+
+      # Install Visual Studio Build Tools with Web workload
+      - name: Install Visual Studio Build Tools (Web)
+        run: |
+          choco install visualstudio2019-buildtools --package-parameters "--add Microsoft.VisualStudio.Workload.WebBuildTools --quiet --norestart --includeRecommended --includeOptional"
+        shell: powershell
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
