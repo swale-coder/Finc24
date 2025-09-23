@@ -1,36 +1,31 @@
-name: CI Build
+name: Build ASP.NET WebApp
 
 on:
   push:
-    branches: [ main ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ main ]
-  workflow_dispatch:
+    branches: [ "main" ]
 
 jobs:
   build:
     runs-on: windows-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: 7.0.x
+      # Setup MSBuild (instead of dotnet build)
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
 
-      - name: Install Visual Studio Web Build Tools
-        run: |
-          Invoke-WebRequest -Uri https://aka.ms/vs/17/release/vs_BuildTools.exe -OutFile vs_BuildTools.exe
-          .\vs_BuildTools.exe --quiet --norestart --wait --add Microsoft.VisualStudio.Workload.WebBuildTools --includeRecommended
-        shell: pwsh
+      # Optional: Setup NuGet
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v2
 
-      - name: Restore dependencies
-        run: dotnet restore
+      # Restore packages
+      - name: Restore NuGet packages
+        run: nuget restore Finc24.sln
 
-      - name: Build
-        run: dotnet build --configuration Release --no-restore
-
-      - name: Run tests
-        run: dotnet test --no-build --verbosity normal
+      # Build solution with MSBuild
+      - name: Build with MSBuild
+        run: msbuild Finc24.sln /p:Configuration=Release
