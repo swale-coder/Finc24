@@ -14,11 +14,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Setup MSBuild (provides access to Microsoft.WebApplication.targets)
+      # Setup MSBuild (includes Microsoft.WebApplication.targets)
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v2
 
-      # Setup NuGet (for package restore)
+      # Setup NuGet
       - name: Setup NuGet
         uses: NuGet/setup-nuget@v2
 
@@ -26,6 +26,14 @@ jobs:
       - name: Restore NuGet packages
         run: nuget restore Finc24.sln
 
-      # Build using MSBuild instead of dotnet build
+      # Build with MSBuild (instead of dotnet build)
       - name: Build with MSBuild
         run: msbuild Finc24.sln /p:Configuration=Release /p:Platform="Any CPU"
+
+      # Publish build artifacts (bin\Release)
+      - name: Publish Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: WebApp-Build
+          path: |
+            **/bin/Release/
