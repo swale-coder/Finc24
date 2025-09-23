@@ -20,6 +20,12 @@ jobs:
         with:
           dotnet-version: 7.0.x
 
+      - name: Install Visual Studio Web Build Tools
+        run: |
+          Invoke-WebRequest -Uri https://aka.ms/vs/17/release/vs_BuildTools.exe -OutFile vs_BuildTools.exe
+          .\vs_BuildTools.exe --quiet --norestart --wait --add Microsoft.VisualStudio.Workload.WebBuildTools --includeRecommended
+        shell: pwsh
+
       - name: Restore dependencies
         run: dotnet restore
 
