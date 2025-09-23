@@ -14,18 +14,18 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Setup MSBuild (instead of dotnet build)
+      # Setup MSBuild (provides access to Microsoft.WebApplication.targets)
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v2
 
-      # Optional: Setup NuGet
+      # Setup NuGet (for package restore)
       - name: Setup NuGet
         uses: NuGet/setup-nuget@v2
 
-      # Restore packages
+      # Restore NuGet packages
       - name: Restore NuGet packages
         run: nuget restore Finc24.sln
 
-      # Build solution with MSBuild
+      # Build using MSBuild instead of dotnet build
       - name: Build with MSBuild
-        run: msbuild Finc24.sln /p:Configuration=Release
+        run: msbuild Finc24.sln /p:Configuration=Release /p:Platform="Any CPU"
