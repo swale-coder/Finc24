@@ -36,4 +36,4 @@ jobs:
         with:
           name: WebApp-Build
           path: |
-            **/bin/Release/
+            **/bin/Release/**
