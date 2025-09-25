@@ -18,31 +18,34 @@ jobs:
       - name: Print current directory
         run: pwd
 
-      # List repo files (debugging)
-      - name: List repo files
+      - name: List files and folders in current directory
         run: dir
 
-      # List files in Finc24 folder (debugging)
-      - name: List files in Finc24 folder
-        run: dir Finc24
+      - name: List all files and folders (recursive)
+        run: dir -Recurse .
 
-      # Setup MSBuild (includes Microsoft.WebApplication.targets)
-      - name: Setup MSBuild
+      - name: List files in Finc24 folder (debugging)
+        run: |
+          if (Test-Path "Finc24") { dir Finc24 } else { Write-Host "Finc24 folder does not exist in this directory." }
+
+      - name: Setup MSBuild (includes Microsoft.WebApplication.targets)
         uses: microsoft/setup-msbuild@v2
 
-      # Setup NuGet
       - name: Setup NuGet
         uses: NuGet/setup-nuget@v2
 
-      # Restore NuGet packages
       - name: Restore NuGet packages
         run: nuget restore Finc24.sln
 
-      # Build & Publish Web Project
       - name: Publish Web Project
-        run: msbuild Finc24/Finc24.Web.csproj /p:Configuration=Release /p:DeployOnBuild=true /p:WebPublishMethod=FileSystem /p:PublishUrl="publish"
+        run: |
+          if (Test-Path "Finc24/Finc24.Web.csproj") {
+            msbuild Finc24/Finc24.Web.csproj /p:Configuration=Release /p:DeployOnBuild=true /p:WebPublishMethod=FileSystem /p:PublishUrl="publish"
+          } else {
+            echo "ERROR: Finc24/Finc24.Web.csproj not found. Check repo structure and paths."
+            exit 1
+          }
 
-      # Upload Published Output
       - name: Upload Published Artifacts
         uses: actions/upload-artifact@v4
         with:
