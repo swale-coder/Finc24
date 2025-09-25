@@ -27,14 +27,13 @@ jobs:
       - name: Restore NuGet packages
         run: nuget restore Finc24.sln
 
-      # Build with MSBuild (instead of dotnet build)
-      - name: Build with MSBuild
-        run: msbuild Finc24.sln /p:Configuration=Release /p:Platform="Any CPU"
+      # Build & Publish Web Project
+      - name: Publish Web Project
+        run: msbuild Finc24.Web\Finc24.Web.csproj /p:Configuration=Release /p:DeployOnBuild=true /p:WebPublishMethod=FileSystem /p:PublishUrl="publish"
 
-      # Publish build artifacts (bin\Release)
-      - name: Publish Artifacts
+      # Upload Published Output
+      - name: Upload Published Artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: WebApp-Build
-          path: |
-            **/bin/Release/**
+          name: WebApp-Published
+          path: publish/**
