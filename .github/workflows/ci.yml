@@ -27,9 +27,18 @@ jobs:
       - name: Restore NuGet packages
         run: nuget restore Finc24.sln
 
+      # List repo files (debugging)
+      - name: List repo files
+        run: dir
+
+      # List files in Finc24 folder (debugging)
+      - name: List files in Finc24 folder
+        run: dir Finc24
+
       # Build & Publish Web Project
       - name: Publish Web Project
         run: msbuild Finc24/Finc24.Web.csproj /p:Configuration=Release /p:DeployOnBuild=true /p:WebPublishMethod=FileSystem /p:PublishUrl="publish"
+
       # Upload Published Output
       - name: Upload Published Artifacts
         uses: actions/upload-artifact@v4
