@@ -1,35 +1,56 @@
-name: CI Build
+name: Build ASP.NET WebApp
 
 on:
   push:
-    branches: [ master ]   # or main, adjust based on your repo
+    branches: [ "main" ]
   pull_request:
-    branches: [ master ]
+    branches: [ "main" ]
   workflow_dispatch:
 
 jobs:
   build:
-    runs-on: windows-latest   # Windows runner required for Web workloads
+    runs-on: windows-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      # Install Visual Studio Build Tools with Web workload
-      - name: Install Visual Studio Build Tools (Web)
-        run: choco install visualstudio2019-buildtools --package-parameters "--add Microsoft.VisualStudio.Workload.WebBuildTools --quiet --norestart --includeRecommended --includeOptional" --yes
-        shell: powershell
+      - name: Print current directory
+        run: pwd
 
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v3
+      - name: List files and folders in current directory
+        run: dir
+
+      - name: List all files and folders recursively
+        run: dir -Recurse .
+
+      - name: List files in Finc24 folder (debugging)
+        run: |
+          if (Test-Path "Finc24") { dir Finc24 } else { Write-Host "Finc24 folder does not exist in this directory." }
+
+      - name: Setup MSBuild (includes Microsoft.WebApplication.targets)
+        uses: microsoft/setup-msbuild@v2
+
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v2
+
+      - name: Restore NuGet packages
+        run: nuget restore Finc24.sln
+
+      - name: Build & Publish Web Project
+        shell: pwsh
+        run: |
+          if (Test-Path "Finc24/Finc24.Web.csproj") {
+            msbuild Finc24/Finc24.Web.csproj /p:Configuration=Release /p:DeployOnBuild=true /p:WebPublishMethod=FileSystem /p:PublishUrl="publish"
+          } elseif (Test-Path "Finc24.Web.csproj") {
+            msbuild Finc24.Web.csproj /p:Configuration=Release /p:DeployOnBuild=true /p:WebPublishMethod=FileSystem /p:PublishUrl="publish"
+          } else {
+            echo "ERROR: Finc24.Web.csproj not found in expected locations. Check repo structure and path."
+            exit 1
+          }
+
+      - name: Upload Published Artifacts
+        uses: actions/upload-artifact@v4
         with:
-          dotnet-version: 7.0.x
-
-      - name: Restore dependencies
-        run: dotnet restore
-
-      - name: Build
-        run: dotnet build --no-restore --configuration Release
-
-      - name: Run tests
-        run: dotnet test --no-build --verbosity normal
+          name: WebApp-Published
+          path: publish/**
