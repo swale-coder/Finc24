@@ -40,12 +40,14 @@ jobs:
       - name: Build & Publish Web Project
         shell: pwsh
         run: |
-          if (Test-Path "Finc24/Finc24.Web.csproj") {
-            msbuild Finc24/Finc24.Web.csproj /p:Configuration=Release /p:DeployOnBuild=true /p:WebPublishMethod=FileSystem /p:PublishUrl="publish"
-          } elseif (Test-Path "Finc24.Web.csproj") {
-            msbuild Finc24.Web.csproj /p:Configuration=Release /p:DeployOnBuild=true /p:WebPublishMethod=FileSystem /p:PublishUrl="publish"
+          $projectPath = "Finc24/Finc24.Web/Finc24.Web.csproj"
+          
+          if (Test-Path $projectPath) {
+            Write-Host "Found project file at $projectPath. Starting build..."
+            # Now msbuild is available in the PATH
+            msbuild $projectPath /p:Configuration=Release /p:DeployOnBuild=true /p:WebPublishMethod=FileSystem /p:PublishUrl="publish"
           } else {
-            echo "ERROR: Finc24.Web.csproj not found in expected locations. Check repo structure and path."
+            Write-Host "ERROR: Project file not found at $projectPath."
             exit 1
           }
 
