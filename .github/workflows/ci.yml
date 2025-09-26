@@ -26,16 +26,19 @@ jobs:
 
       - name: Setup NuGet
         uses: NuGet/setup-nuget@v2
-
-      - name: Restore NuGet packages
-        # Ensure NuGet restores packages for the solution file
-        run: nuget restore Finc24.sln
+      
+      - name: Change directory and restore NuGet packages
+        shell: pwsh
+        run: |
+          cd Finc24
+          nuget restore Finc24.sln
+          cd ..
 
       - name: Build & Publish Web Project
         shell: pwsh
         run: |
-          # Use the corrected relative path from the repository root
-          $projectPath = "Finc24.Web/Finc24.Web.csproj"
+          # The path is now relative to the Finc24 directory
+          $projectPath = "Finc24/Finc24.Web/Finc24.Web.csproj"
           $publishPath = "publish"
           
           if (Test-Path $projectPath) {
@@ -62,4 +65,6 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: WebApp-Published
+          path: publish/**
+bApp-Published
           path: publish/**
