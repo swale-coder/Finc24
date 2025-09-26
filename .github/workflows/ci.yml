@@ -63,7 +63,8 @@ jobs:
             }
           }
 
-          msbuild $projectPath /p:Configuration=Release /p:DeployOnBuild=true /p:WebPublishMethod=FileSystem /p:PublishUrl="publish"
+           msbuild $projectPath /p:Configuration=Release /p:WebPublishMethod=FileSystem /p:DeleteExistingFiles=True /p:PublishUrl="$(pwd)\publish"
+
 
       - name: Upload Published Artifacts
         uses: actions/upload-artifact@v4
