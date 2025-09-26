@@ -21,19 +21,6 @@ jobs:
       - name: List files and folders in current directory
         run: dir
 
-      - name: List all files and folders recursively
-        run: dir -Recurse .
-
-      - name: Check Finc24.Web folder
-        run: |
-          if (Test-Path "Finc24.Web") { 
-            Write-Host "✅ Found Finc24.Web folder. Contents:"
-            dir Finc24.Web
-          } else { 
-            Write-Host "❌ ERROR: Finc24.Web folder not found!"
-            exit 1
-          }
-
       - name: Setup MSBuild (includes Microsoft.WebApplication.targets)
         uses: microsoft/setup-msbuild@v2
 
@@ -41,30 +28,35 @@ jobs:
         uses: NuGet/setup-nuget@v2
 
       - name: Restore NuGet packages
+        # Ensure NuGet restores packages for the solution file
         run: nuget restore Finc24.sln
 
-      - name: Build Web Project
+      - name: Build & Publish Web Project
         shell: pwsh
         run: |
-          $defaultPath = "Finc24.Web/Finc24.Web.csproj"
-
-          if (Test-Path $defaultPath) {
-            Write-Host "✅ Using expected project file: $defaultPath"
-            $projectPath = $defaultPath
-          } else {
-            Write-Host "⚠️ Expected file not found. Searching for .csproj in Finc24.Web..."
-            $projectPath = Get-ChildItem -Path "Finc24.Web" -Filter *.csproj -Recurse | Select-Object -First 1 -ExpandProperty FullName
-
-            if (-not $projectPath) {
-              Write-Host "❌ ERROR: No .csproj file found in Finc24.Web."
-              exit 1
+          # Use the corrected relative path from the repository root
+          $projectPath = "Finc24.Web/Finc24.Web.csproj"
+          $publishPath = "publish"
+          
+          if (Test-Path $projectPath) {
+            Write-Host "Found project file at $projectPath. Starting build..."
+            
+            # Run the msbuild command with detailed logging
+            # The /v:d flag will print detailed errors and warnings to the log
+            msbuild $projectPath /p:Configuration=Release /p:DeployOnBuild=true /p:WebPublishMethod=FileSystem /p:PublishUrl=$publishPath /v:d
+            
+            # Check if the publish directory was created successfully
+            if (Test-Path $publishPath) {
+              Write-Host "SUCCESS: Publish directory was created. The build completed."
+              exit 0
             } else {
-              Write-Host "✅ Found project file dynamically: $projectPath"
+              Write-Host "ERROR: The 'publish' directory was not created after the build. Check the detailed log for errors."
+              exit 1
             }
+          } else {
+            Write-Host "FATAL ERROR: Project file not found at $projectPath. This should not have happened."
+            exit 1
           }
-
-           msbuild $projectPath /p:Configuration=Release /p:WebPublishMethod=FileSystem /p:DeleteExistingFiles=True /p:PublishUrl="$(pwd)\publish"
-
 
       - name: Upload Published Artifacts
         uses: actions/upload-artifact@v4
