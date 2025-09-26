@@ -37,18 +37,17 @@ jobs:
       - name: Restore NuGet packages
         run: nuget restore Finc24.sln
 
-      - name: Build & Publish Web Project
+      - name: Build .NET project
         shell: pwsh
         run: |
-          # Use the corrected relative path from the repository root
-          $projectPath = "Finc24.Web/Finc24.Web.csproj"
+          # Find the first .csproj file dynamically
+          $projectPath = Get-ChildItem -Path . -Recurse -Filter *.csproj | Select-Object -First 1 -ExpandProperty FullName
           
           if (Test-Path $projectPath) {
             Write-Host "Found project file at $projectPath. Starting build..."
-            # The msbuild command is now correct and will run
             msbuild $projectPath /p:Configuration=Release /p:DeployOnBuild=true /p:WebPublishMethod=FileSystem /p:PublishUrl="publish"
           } else {
-            Write-Host "ERROR: Project file not found at $projectPath. Please check the repository structure."
+            Write-Host "ERROR: No .csproj file found in repository."
             exit 1
           }
 
