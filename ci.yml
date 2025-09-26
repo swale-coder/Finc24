@@ -2,14 +2,14 @@
 
 on:
   push:
-    branches: [ master ]   # or main, depending on your repo
+    branches: [ master ]   # or main, adjust based on your repo
   pull_request:
     branches: [ master ]
   workflow_dispatch:
 
 jobs:
   build:
-    runs-on: windows-latest   # ⚠️ Important: use Windows runner (Linux doesn't have Web workloads)
+    runs-on: windows-latest   # Windows runner required for Web workloads
 
     steps:
       - name: Checkout code
@@ -17,14 +17,13 @@ jobs:
 
       # Install Visual Studio Build Tools with Web workload
       - name: Install Visual Studio Build Tools (Web)
-        run: |
-          choco install visualstudio2019-buildtools --package-parameters "--add Microsoft.VisualStudio.Workload.WebBuildTools --quiet --norestart --includeRecommended --includeOptional"
+        run: choco install visualstudio2019-buildtools --package-parameters "--add Microsoft.VisualStudio.Workload.WebBuildTools --quiet --norestart --includeRecommended --includeOptional" --yes
         shell: powershell
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '7.0.x'
+          dotnet-version: 7.0.x
 
       - name: Restore dependencies
         run: dotnet restore
