@@ -24,9 +24,15 @@ jobs:
       - name: List all files and folders recursively
         run: dir -Recurse .
 
-      - name: List files in Finc24 folder (debugging)
+      - name: Check Finc24.Web folder
         run: |
-          if (Test-Path "Finc24") { dir Finc24 } else { Write-Host "Finc24 folder does not exist in this directory." }
+          if (Test-Path "Finc24.Web") { 
+            Write-Host "✅ Found Finc24.Web folder. Contents:"
+            dir Finc24.Web
+          } else { 
+            Write-Host "❌ ERROR: Finc24.Web folder not found!"
+            exit 1
+          }
 
       - name: Setup MSBuild (includes Microsoft.WebApplication.targets)
         uses: microsoft/setup-msbuild@v2
@@ -37,19 +43,27 @@ jobs:
       - name: Restore NuGet packages
         run: nuget restore Finc24.sln
 
-      - name: Build .NET project
+      - name: Build Web Project
         shell: pwsh
         run: |
-          # Find the first .csproj file dynamically
-          $projectPath = Get-ChildItem -Path . -Recurse -Filter *.csproj | Select-Object -First 1 -ExpandProperty FullName
-          
-          if (Test-Path $projectPath) {
-            Write-Host "Found project file at $projectPath. Starting build..."
-            msbuild $projectPath /p:Configuration=Release /p:DeployOnBuild=true /p:WebPublishMethod=FileSystem /p:PublishUrl="publish"
+          $defaultPath = "Finc24.Web/Finc24.Web.csproj"
+
+          if (Test-Path $defaultPath) {
+            Write-Host "✅ Using expected project file: $defaultPath"
+            $projectPath = $defaultPath
           } else {
-            Write-Host "ERROR: No .csproj file found in repository."
-            exit 1
+            Write-Host "⚠️ Expected file not found. Searching for .csproj in Finc24.Web..."
+            $projectPath = Get-ChildItem -Path "Finc24.Web" -Filter *.csproj -Recurse | Select-Object -First 1 -ExpandProperty FullName
+
+            if (-not $projectPath) {
+              Write-Host "❌ ERROR: No .csproj file found in Finc24.Web."
+              exit 1
+            } else {
+              Write-Host "✅ Found project file dynamically: $projectPath"
+            }
           }
+
+          msbuild $projectPath /p:Configuration=Release /p:DeployOnBuild=true /p:WebPublishMethod=FileSystem /p:PublishUrl="publish"
 
       - name: Upload Published Artifacts
         uses: actions/upload-artifact@v4
