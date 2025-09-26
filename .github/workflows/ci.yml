@@ -1,4 +1,4 @@
-name: Build ASP.NET WebApp
+ame: Build ASP.NET WebApp
 
 on:
   push:
@@ -60,11 +60,8 @@ jobs:
             Write-Host "FATAL ERROR: Project file not found at $projectPath. This should not have happened."
             exit 1
           }
-
       - name: Upload Published Artifacts
         uses: actions/upload-artifact@v4
         with:
           name: WebApp-Published
-          path: publish/**
-bApp-Published
           path: publish/**
