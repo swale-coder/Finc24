@@ -12,29 +12,20 @@ jobs:
     runs-on: windows-latest
 
     steps:
+      # Checkout repo
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Print current directory
+      # Debugging steps (to confirm structure)
+      - name: Print working directory
         run: pwd
-
-      - name: List files and folders in current directory
+      - name: List top-level files and folders
         run: dir
+      - name: List all files recursively
+        run: dir -Recurse
 
-      - name: List all files and folders recursively
-        run: dir -Recurse .
-
-      - name: Check Finc24.Web folder
-        run: |
-          if (Test-Path "Finc24.Web") { 
-            Write-Host "✅ Found Finc24.Web folder. Contents:"
-            dir Finc24.Web
-          } else { 
-            Write-Host "❌ ERROR: Finc24.Web folder not found!"
-            exit 1
-          }
-
-      - name: Setup MSBuild (includes Microsoft.WebApplication.targets)
+      # Setup build tools
+      - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v2
 
       - name: Setup NuGet
@@ -43,31 +34,33 @@ jobs:
       - name: Restore NuGet packages
         run: nuget restore Finc24.sln
 
-      - name: Build Web Project
+      # Build & publish
+      - name: Build and Publish Web Project
         shell: pwsh
         run: |
-          $defaultPath = "Finc24.Web/Finc24.Web.csproj"
-
-          if (Test-Path $defaultPath) {
-            Write-Host "✅ Using expected project file: $defaultPath"
-            $projectPath = $defaultPath
+          # Try to find the .csproj dynamically
+          $projectPath = Get-ChildItem -Path . -Filter *.csproj -Recurse | Where-Object { $_.FullName -like "*Finc24.Web*" } | Select-Object -First 1 -ExpandProperty FullName
+          if (-not $projectPath) {
+            Write-Host "❌ ERROR: Could not find Finc24.Web.csproj"
+            exit 1
           } else {
-            Write-Host "⚠️ Expected file not found. Searching for .csproj in Finc24.Web..."
-            $projectPath = Get-ChildItem -Path "Finc24.Web" -Filter *.csproj -Recurse | Select-Object -First 1 -ExpandProperty FullName
-
-            if (-not $projectPath) {
-              Write-Host "❌ ERROR: No .csproj file found in Finc24.Web."
-              exit 1
-            } else {
-              Write-Host "✅ Found project file dynamically: $projectPath"
-            }
+            Write-Host "✅ Found project: $projectPath"
           }
 
-           msbuild $projectPath /p:Configuration=Release /p:WebPublishMethod=FileSystem /p:DeleteExistingFiles=True /p:PublishUrl="$(pwd)\publish"
+          # Run MSBuild with publish output
+          msbuild $projectPath `
+            /p:Configuration=Release `
+            /p:WebPublishMethod=FileSystem `
+            /p:DeleteExistingFiles=True `
+            /p:PublishUrl="$(pwd)\publish"
 
+      # Verify publish output
+      - name: List published files
+        run: dir -Recurse publish
 
+      # Upload publish folder as artifact
       - name: Upload Published Artifacts
         uses: actions/upload-artifact@v4
         with:
           name: WebApp-Published
-          path: bin/**
+          path: publish/**
