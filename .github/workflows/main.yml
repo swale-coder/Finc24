@@ -1,0 +1,66 @@
+name: Build ASP.NET WebApp
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-2022
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
+
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v2
+
+      - name: Restore NuGet packages
+        run: nuget restore Finc24.sln
+
+      - name: Build and Publish Web Project
+        id: publish
+        shell: pwsh
+        run: |
+          $projectPath = Get-ChildItem -Path . -Filter *.csproj -Recurse | Where-Object { $_.FullName -like "*Finc24.Web*" } | Select-Object -First 1 -ExpandProperty FullName
+          if (-not $projectPath) {
+            Write-Host "❌ ERROR: Could not find Finc24.Web.csproj"
+            exit 1
+          }
+          $publishPath = "$(pwd)\publish"
+          msbuild $projectPath `
+            /t:Publish `
+            /p:Configuration=Release `
+            /p:WebPublishMethod=FileSystem `
+            /p:DeleteExistingFiles=True `
+            /p:PublishUrl=$publishPath
+          if (Test-Path $publishPath) {
+            Write-Host "✅ Publish folder exists at $publishPath"
+            echo "publishPath=$publishPath" >> $env:GITHUB_OUTPUT
+          } else {
+            Write-Host "❌ Publish folder NOT found, searching..."
+            $found = Get-ChildItem -Path . -Recurse -Directory | Where-Object { $_.Name -eq "publish" } | Select-Object -First 1
+            if ($found) {
+              Write-Host "⚠️ Found publish folder at $($found.FullName)"
+              echo "publishPath=$($found.FullName)" >> $env:GITHUB_OUTPUT
+            } else {
+              Write-Host "❌ No publish folder found anywhere."
+              exit 1
+            }
+          }
+
+      - name: Output resolved publishPath
+        run: echo "Artifact publish path: ${{ steps.publish.outputs.publishPath }}"
+
+      - name: Upload Published Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: WebApp-Published
+          path: ${{ steps.publish.outputs.publishPath }}/**
+          if-no-files-found: error
