@@ -38,7 +38,7 @@ jobs:
       - name: Build and Publish Web Project
         shell: pwsh
         run: |
-          # Try to find the .csproj dynamically
+          # Find the .csproj dynamically
           $projectPath = Get-ChildItem -Path . -Filter *.csproj -Recurse | Where-Object { $_.FullName -like "*Finc24.Web*" } | Select-Object -First 1 -ExpandProperty FullName
           if (-not $projectPath) {
             Write-Host "❌ ERROR: Could not find Finc24.Web.csproj"
@@ -52,11 +52,19 @@ jobs:
             /p:Configuration=Release `
             /p:WebPublishMethod=FileSystem `
             /p:DeleteExistingFiles=True `
-            /p:PublishUrl="$(pwd)\publish"
+            /p:PublishUrl=publish
 
       # Verify publish output
-      - name: List published files
-        run: dir -Recurse publish
+      - name: Verify publish folder
+        shell: pwsh
+        run: |
+          if (Test-Path publish) {
+            Write-Host "✅ Publish folder exists"
+            dir publish -Recurse
+          } else {
+            Write-Host "❌ Publish folder NOT found"
+            exit 1
+          }
 
       # Upload publish folder as artifact
       - name: Upload Published Artifacts
@@ -64,3 +72,4 @@ jobs:
         with:
           name: WebApp-Published
           path: publish/**
+          if-no-files-found: error
