@@ -12,19 +12,9 @@ jobs:
     runs-on: windows-2022
 
     steps:
-      # Checkout the repo
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Debugging steps
-      - name: Print working directory
-        run: pwd
-      - name: List top-level files and folders
-        run: dir
-      - name: List all files recursively
-        run: dir -Recurse
-
-      # Setup build tools
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v2
 
@@ -34,7 +24,6 @@ jobs:
       - name: Restore NuGet packages
         run: nuget restore Finc24.sln
 
-      # Build and Publish Web Project
       - name: Build and Publish Web Project
         id: publish
         shell: pwsh
@@ -43,23 +32,16 @@ jobs:
           if (-not $projectPath) {
             Write-Host "❌ ERROR: Could not find Finc24.Web.csproj"
             exit 1
-          } else {
-            Write-Host "✅ Found project: $projectPath"
           }
-
           $publishPath = "$(pwd)\publish"
-          Write-Host "🔖 Publish path will be $publishPath"
           msbuild $projectPath `
             /t:Publish `
             /p:Configuration=Release `
             /p:WebPublishMethod=FileSystem `
             /p:DeleteExistingFiles=True `
             /p:PublishUrl=$publishPath
-
-          # Check if publish succeeded
           if (Test-Path $publishPath) {
             Write-Host "✅ Publish folder exists at $publishPath"
-            dir $publishPath -Recurse
             echo "publishPath=$publishPath" >> $env:GITHUB_OUTPUT
           } else {
             Write-Host "❌ Publish folder NOT found, searching..."
@@ -73,8 +55,12 @@ jobs:
             }
           }
 
-      # Output for debugging
       - name: Output resolved publishPath
-        run: echo "Artifact publish path: ${{ steps.publish.outputs.publishPath }}"
+        run: echo "Artifact publish path:${{ steps.publish.outputs.publishPath }}"
 
-      #
+      - name: Upload Published Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: WebApp-Published
+          path: ${{ steps.publish.outputs.publishPath }}/**
+          if-no-files-found: error
