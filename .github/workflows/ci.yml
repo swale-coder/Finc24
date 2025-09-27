@@ -36,6 +36,7 @@ jobs:
 
       # Build & publish
       - name: Build and Publish Web Project
+        id: publish
         shell: pwsh
         run: |
           # Find the .csproj dynamically
@@ -47,29 +48,38 @@ jobs:
             Write-Host "✅ Found project: $projectPath"
           }
 
+          # Define publish path
+          $publishPath = "$(pwd)\publish"
+
           # Run MSBuild with publish output
           msbuild $projectPath `
             /p:Configuration=Release `
+            /p:DeployOnBuild=true `
             /p:WebPublishMethod=FileSystem `
             /p:DeleteExistingFiles=True `
-            /p:PublishUrl=publish
+            /p:PublishUrl=$publishPath
 
-      # Verify publish output
-      - name: Verify publish folder
-        shell: pwsh
-        run: |
-          if (Test-Path publish) {
-            Write-Host "✅ Publish folder exists"
-            dir publish -Recurse
+          # Verify publish path
+          if (Test-Path $publishPath) {
+            Write-Host "✅ Publish folder exists at $publishPath"
+            dir $publishPath -Recurse
+            echo "publishPath=$publishPath" >> $env:GITHUB_OUTPUT
           } else {
-            Write-Host "❌ Publish folder NOT found"
-            exit 1
+            Write-Host "❌ Publish folder NOT found, searching..."
+            $found = Get-ChildItem -Path . -Recurse -Directory | Where-Object { $_.Name -eq "publish" } | Select-Object -First 1
+            if ($found) {
+              Write-Host "⚠️ Found publish folder at $($found.FullName)"
+              echo "publishPath=$($found.FullName)" >> $env:GITHUB_OUTPUT
+            } else {
+              Write-Host "❌ No publish folder found anywhere."
+              exit 1
+            }
           }
 
-      # Upload publish folder as artifact
+      # Upload publish folder as artifact (dynamic path)
       - name: Upload Published Artifacts
         uses: actions/upload-artifact@v4
         with:
           name: WebApp-Published
-          path: publish/**
+          path: ${{ steps.publish.outputs.publishPath }}/**
           if-no-files-found: error
