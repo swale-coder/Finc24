@@ -1,80 +1,80 @@
 name: Build ASP.NET WebApp
 
 on:
-push:
-# Triggers when code is pushed to the master or main branches
- branches: [ "master", "main" ]
-pull_request:
-# Triggers when a pull request is opened targeting master or main
- branches: [ "master", "main" ]
-workflow_dispatch: # Allows manual running from the GitHub UI
+  push:
+    # Triggers when code is pushed to the master or main branches
+    branches: [ "master", "main" ]
+  pull_request:
+    # Triggers when a pull request is opened targeting master or main
+    branches: [ "master", "main" ]
+  workflow_dispatch: # Allows manual running from the GitHub UI
 
 jobs:
-build:
-# Runs on a fresh Windows Server 2022 image
-runs-on: windows-2022
+  build:
+    # Runs on a fresh Windows Server 2022 image
+    runs-on: windows-2022
 
-steps:
-  - name: Checkout repository
-    uses: actions/checkout@v4
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-  - name: Setup MSBuild
-    # Installs the necessary MSBuild tools
-    uses: microsoft/setup-msbuild@v2
+      - name: Setup MSBuild
+        # Installs the necessary MSBuild tools
+        uses: microsoft/setup-msbuild@v2
 
-  - name: Setup NuGet
-    # Ensures NuGet is available for package restoration
-    uses: NuGet/setup-nuget@v2
+      - name: Setup NuGet
+        # Ensures NuGet is available for package restoration
+        uses: NuGet/setup-nuget@v2
 
-  - name: Restore NuGet packages
-    # Restores all packages defined in the solution file
-    run: nuget restore Finc24.sln
+      - name: Restore NuGet packages
+        # Restores all packages defined in the solution file
+        run: nuget restore Finc24.sln
 
-  - name: Build and Publish Web Project
-    id: publish
-    shell: pwsh # Use PowerShell for more complex commands
-    run: |
-      # 1. Find the specific .csproj file for the web project by searching for 'Finc24.Web'
-      $projectPath = Get-ChildItem -Path . -Filter *.csproj -Recurse | Where-Object { $_.FullName -like "*Finc24.Web*" } | Select-Object -First 1 -ExpandProperty FullName
-      if (-not $projectPath) {
-        Write-Host "❌ ERROR: Could not find Finc24.Web.csproj"
-        exit 1
-      }
-      $publishPath = "$(pwd)\publish"
-      
-      # 2. Run MSBuild to publish the project to the designated path
-      msbuild $projectPath `
-        /t:Publish `
-        /p:Configuration=Release `
-        /p:WebPublishMethod=FileSystem `
-        /p:DeleteExistingFiles=True `
-        /p:PublishUrl=$publishPath
-      
-      # 3. Verify output path and set it as a job output variable for the next step (Upload Artifact)
-      if (Test-Path $publishPath) {
-        Write-Host "✅ Publish folder exists at $publishPath"
-        # Set the output variable
-        echo "publishPath=$publishPath" >> $env:GITHUB_OUTPUT
-      } else {
-        # Fallback search if the path wasn't what was expected
-        Write-Host "❌ Publish folder NOT found at expected location, searching entire workspace..."
-        $found = Get-ChildItem -Path . -Recurse -Directory | Where-Object { $_.Name -eq "publish" } | Select-Object -First 1
-        if ($found) {
-          Write-Host "⚠️ Found publish folder at $($found.FullName)"
-          echo "publishPath=$($found.FullName)" >> $env:GITHUB_OUTPUT
-        } else {
-          Write-Host "❌ No publish folder found anywhere. Build failed to produce output."
-          exit 1
-        }
-      }
+      - name: Build and Publish Web Project
+        id: publish
+        shell: pwsh # Use PowerShell for more complex commands
+        run: |
+          # 1. Find the specific .csproj file for the web project by searching for 'Finc24.Web'
+          $projectPath = Get-ChildItem -Path . -Filter *.csproj -Recurse | Where-Object { $_.FullName -like "*Finc24.Web*" } | Select-Object -First 1 -ExpandProperty FullName
+          if (-not $projectPath) {
+            Write-Host "❌ ERROR: Could not find Finc24.Web.csproj"
+            exit 1
+          }
+          $publishPath = "$(pwd)\publish"
 
-  - name: Output resolved publishPath
-    run: echo "Artifact publish path: ${{ steps.publish.outputs.publishPath }}"
+          # 2. Run MSBuild to publish the project to the designated path
+          msbuild $projectPath `
+            /t:Publish `
+            /p:Configuration=Release `
+            /p:WebPublishMethod=FileSystem `
+            /p:DeleteExistingFiles=True `
+            /p:PublishUrl=$publishPath
 
-  - name: Upload Published Artifacts
-    uses: actions/upload-artifact@v4
-    with:
-      name: WebApp-Published
-      # Upload all contents (/**) of the path set in the previous step
-      path: ${{ steps.publish.outputs.publishPath }}/**
-      if-no-files-found: error
+          # 3. Verify output path and set it as a job output variable for the next step (Upload Artifact)
+          if (Test-Path $publishPath) {
+            Write-Host "✅ Publish folder exists at $publishPath"
+            # Set the output variable
+            echo "publishPath=$publishPath" >> $env:GITHUB_OUTPUT
+          } else {
+            # Fallback search if the path wasn't what was expected
+            Write-Host "❌ Publish folder NOT found at expected location, searching entire workspace..."
+            $found = Get-ChildItem -Path . -Recurse -Directory | Where-Object { $_.Name -eq "publish" } | Select-Object -First 1
+            if ($found) {
+              Write-Host "⚠️ Found publish folder at $($found.FullName)"
+              echo "publishPath=$($found.FullName)" >> $env:GITHUB_OUTPUT
+            } else {
+              Write-Host "❌ No publish folder found anywhere. Build failed to produce output."
+              exit 1
+            }
+          }
+
+      - name: Output resolved publishPath
+        run: echo "Artifact publish path:${{ steps.publish.outputs.publishPath }}"
+
+      - name: Upload Published Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: WebApp-Published
+          # Upload all contents (/**) of the path set in the previous step
+          path: ${{ steps.publish.outputs.publishPath }}/**
+          if-no-files-found: error
