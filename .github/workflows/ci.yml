@@ -34,8 +34,7 @@ jobs:
       - name: Restore NuGet packages
         run: nuget restore Finc24.sln
 
-      # Build & publish
-      - name: Build and Publish Web Project
+            - name: Build and Publish Web Project
         id: publish
         shell: pwsh
         run: |
@@ -51,8 +50,9 @@ jobs:
           # Define publish path
           $publishPath = "$(pwd)\publish"
 
-          # Run MSBuild with publish output
+          # Run MSBuild with publish target (important!)
           msbuild $projectPath `
+            /t:Build;Publish `
             /p:Configuration=Release `
             /p:DeployOnBuild=true `
             /p:WebPublishMethod=FileSystem `
@@ -75,6 +75,7 @@ jobs:
               exit 1
             }
           }
+
 
       # Upload publish folder as artifact (dynamic path)
       - name: Upload Published Artifacts
